@@ -7,7 +7,8 @@
     "lint:css": "stylelint --allow-empty-input **/*.css",
     "lint:js": "eslint .",
     "lint": "npm run lint:js && npm run lint:css",
-    "test": "jest --passWithNoTests"
+    "test": "jest --passWithNoTests",
+    "dev": "netlify dev"
   },
   "repository": {
     "type": "git",
@@ -27,6 +28,7 @@
     "husky": "^4.2.5",
     "jest": "^26.2.2",
     "lint-staged": "^10.2.11",
+    "netlify-cli": "^2.59.3",
     "prettier": "2.0.5",
     "stylelint": "^13.6.1",
     "stylelint-config-prettier": "^8.0.2",

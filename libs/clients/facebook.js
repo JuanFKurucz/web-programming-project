@@ -5,8 +5,11 @@ const setAccessToken = (token) => {
 };
 
 const getFacebookPages = async () => {
-  return new Promise((resolve) => {
+  return new Promise((resolve, reject) => {
     FB.api('/me/accounts', 'GET', {}, (response) => {
+      if (!response || response.error) {
+        reject(response.error);
+      }
       const pages = [];
       Object.keys(response.data).forEach((key) => {
         pages.push(response.data[key].id);
@@ -17,21 +20,31 @@ const getFacebookPages = async () => {
 };
 
 const getInstagramId = async (facebookPageId) => {
-  return new Promise((resolve) => {
+  return new Promise((resolve, reject) => {
     FB.api(
       `/${facebookPageId}`,
       'GET',
       { fields: 'instagram_business_account' },
       (response) => {
-        resolve(response.instagram_business_account.id);
+        if (!response || response.error) {
+          reject(response.error);
+        }
+        resolve(
+          response.instagram_business_account
+            ? response.instagram_business_account.id
+            : null,
+        );
       },
     );
   });
 };
 
 const getInstagramPosts = async (instagramId) => {
-  return new Promise((resolve) => {
+  return new Promise((resolve, reject) => {
     FB.api(`/${instagramId}/media`, 'GET', {}, (response) => {
+      if (!response || response.error) {
+        reject(response.error);
+      }
       const posts = [];
       Object.keys(response.data).forEach((key) => {
         posts.push(response.data[key].id);
@@ -42,8 +55,11 @@ const getInstagramPosts = async (instagramId) => {
 };
 
 const getInstagramPostComments = async (instagramPostId) => {
-  return new Promise((resolve) => {
+  return new Promise((resolve, reject) => {
     FB.api(`/${instagramPostId}/comments`, 'GET', {}, (response) => {
+      if (!response || response.error) {
+        reject(response.error);
+      }
       resolve(response.data);
     });
   });

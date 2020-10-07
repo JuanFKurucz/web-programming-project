@@ -43,5 +43,10 @@
     "*.js": "eslint --cache --fix",
     "*.css": "stylelint --fix",
     "*.{js,css,md}": "prettier --write"
+  },
+  "dependencies": {
+    "bcrypt": "^5.0.0",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.10.8"
   }
 }

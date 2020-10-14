@@ -10,7 +10,7 @@ const userSchema = new mongoose.Schema({
   accessToken: { type: String, required: false },
 });
 
-userSchema.virtual('toFrontend').get(function toFrontend() {
+userSchema.virtual('toFrontend').get(function () {
   return {
     username: this.username,
     email: this.email,

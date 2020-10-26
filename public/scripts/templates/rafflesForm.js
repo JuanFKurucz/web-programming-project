@@ -8,20 +8,11 @@ const rafflesForm = () => {
       <section class="raffles">
         <h1>Crear un nuevo sorteo</h1>
         
-          <div class="form-group raffles">
-            <button
-              class="raffles-button"
-              name="Instagram">
-              Ingresar su usuario
-            </button>
-          </div>
-
-          <div class="form-group raffles">
-            <button
-              class="raffles-button"
-              name="Listado por nombres">
-              Ingresar su contraseña
-              </button>
+        <div class="form-group">
+            <button class="raffles-button"> Instagram </button>
+        </div>
+        <div class="form-group">
+            <button class="raffles-button"> Listado por nombres </button>
           </div>
 
           ${error ? html`<p>${error.message}</p>` : nothing}

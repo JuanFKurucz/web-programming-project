@@ -1,0 +1,41 @@
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+}
+
+.login {
+  width: 50%;
+  height: 100vh;
+  padding: 20vh 0 0 0;
+  font-size: 2.5vh;
+}
+
+.ourInput {
+  width: 100%;
+  border-radius: 1vw;
+  border-style: solid;
+  border-color: grey;
+  height: 4vh;
+}
+
+.form-group {
+  margin-top: 3vh;
+  margin-bottom: 3vh;
+}
+
+.loginButton {
+  width: 100%;
+  color: skyblue;
+  border-color: skyblue;
+  border-radius: 1vw;
+  background-color: transparent;
+  border-style: solid;
+  height: 4vh;
+}

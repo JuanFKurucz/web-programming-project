@@ -39,3 +39,20 @@ body {
   border-style: solid;
   height: 4vh;
 }
+
+.raffles-button {
+  width: 100%;
+  color: skyblue;
+  border-color: skyblue;
+  border-radius: 1vw;
+  background-color: transparent;
+  border-style: solid;
+  height: 4vh;
+}
+
+.raffles {
+  width: 50%;
+  height: 100vh;
+  padding: 20vh 0 0 0;
+  font-size: 2.5vh;
+}

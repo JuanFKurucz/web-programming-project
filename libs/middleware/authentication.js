@@ -23,6 +23,7 @@ const authentication = () => ({
       handler.event.optionsParameters &&
       !handler.event.optionsParameters.loginRequired
     ) {
+      // If we don't require login we bypass this middleware
       next();
       return;
     }
@@ -83,6 +84,7 @@ const authentication = () => ({
           });
           return;
         }
+        // We store the user in the decoratedParameters
         handler.event.decoratedParameters.user = user; // eslint-disable-line no-param-reassign
         next();
       })

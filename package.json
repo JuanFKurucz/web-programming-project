@@ -45,7 +45,6 @@
     "*.{js,css,md}": "prettier --write"
   },
   "dependencies": {
-    "@middy/core": "^1.4.0",
     "bcrypt": "^5.0.0",
     "fb": "^2.0.0",
     "jsonwebtoken": "^8.5.1",

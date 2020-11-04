@@ -1,23 +1,20 @@
+const {
+  formatError,
+  formatOutput,
+} = require('../../../libs/utils/formatOutput');
+
 const updateUser = async (event, user) => {
   if (user) {
     try {
       const data = JSON.parse(event.body);
       await user.update({ password: data.password });
-      return {
-        statusCode: 200,
-        body: JSON.stringify(user.toFrontend),
-      };
+      return formatOutput(200, user.toFrontend);
     } catch (e) {
-      return {
-        statusCode: 500,
-        body: '',
-      };
+      console.log(e);
     }
+    return formatError(500, 'Unexpected error');
   }
-  return {
-    statusCode: 401,
-    body: '',
-  };
+  return formatError(404, 'User not found');
 };
 
 module.exports = updateUser;

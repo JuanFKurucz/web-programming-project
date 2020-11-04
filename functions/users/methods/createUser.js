@@ -1,11 +1,13 @@
+const {
+  formatError,
+  formatOutput,
+} = require('../../../libs/utils/formatOutput');
+
 const User = require('../../../libs/models/User');
 
 const createUser = async (event, user = null) => {
   if (user) {
-    return {
-      statusCode: 405,
-      body: '',
-    };
+    return formatError(403, 'A logged user cannot sign up again');
   }
 
   const data = JSON.parse(event.body);
@@ -17,23 +19,12 @@ const createUser = async (event, user = null) => {
     });
     try {
       await newUser.save();
-      return {
-        statusCode: 200,
-        body: JSON.stringify(newUser.toFrontend),
-      };
+      return formatOutput(200, newUser.toFrontend);
     } catch (error) {
-      // If there is an error send code 500: Internal server error
-      console.log(error);
-      return {
-        statusCode: 500,
-        body: 'Error!',
-      };
+      return formatError(500, 'Unexpected error');
     }
   }
-  return {
-    statusCode: 400,
-    body: '',
-  };
+  return formatError(400, 'Missing parameter (username)');
 };
 
 module.exports = createUser;

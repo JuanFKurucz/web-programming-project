@@ -1,14 +1,13 @@
+const {
+  formatError,
+  formatOutput,
+} = require('../../../libs/utils/formatOutput');
+
 const getUser = async (event, user) => {
   if (user) {
-    return {
-      statusCode: 200,
-      body: JSON.stringify(user.toFrontend),
-    };
+    return formatOutput(200, user.toFrontend);
   }
-  return {
-    statusCode: 401,
-    body: 'User not found',
-  };
+  return formatError(404, 'User not found');
 };
 
 module.exports = getUser;

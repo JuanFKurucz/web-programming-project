@@ -18,27 +18,33 @@ const verifyToken = (token) => {
 };
 
 const authentication = (config) => (handler) => async (event, context) => {
-  if (!config[event.httpMethod].options.loginRequired) {
-    return handler(event, context, null);
-  }
   const { headers } = event;
   const { authorization } = headers;
   if (!authorization) {
-    return formatError(401, 'You must be logged in.');
+    if (config[event.httpMethod].options.loginRequired) {
+      return formatError(401, 'You must be logged in.');
+    }
+    return handler(event, context, null);
   }
 
   const [scheme, token] = authorization.split(' ');
 
   if (!/^Bearer$/i.test(scheme)) {
-    return formatError(
-      401,
-      `Unsupported authentication scheme: "${scheme}". Supported schemes: "Bearer".`,
-    );
+    if (config[event.httpMethod].options.loginRequired) {
+      return formatError(
+        401,
+        `Unsupported authentication scheme: "${scheme}". Supported schemes: "Bearer".`,
+      );
+    }
+    return handler(event, context, null);
   }
 
   const decoded = verifyToken(token);
   if (!decoded) {
-    return formatError(401, 'Invalid token.');
+    if (config[event.httpMethod].options.loginRequired) {
+      return formatError(401, 'Invalid token.');
+    }
+    return handler(event, context, null);
   }
 
   const { sub: userId } = decoded;
@@ -46,7 +52,10 @@ const authentication = (config) => (handler) => async (event, context) => {
     const user = await User.findById(userId);
     return handler(event, context, user);
   } catch (e) {
-    return formatError(401, 'Invalid token.');
+    if (config[event.httpMethod].options.loginRequired) {
+      return formatError(401, 'Invalid token.');
+    }
+    return handler(event, context, null);
   }
 };
 

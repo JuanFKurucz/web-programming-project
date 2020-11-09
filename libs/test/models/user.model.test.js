@@ -1,5 +1,3 @@
-// ESTO ES UN EJEMPLO TRAIDO DEL PROYECTO DE PROGRAMACION WEB.
-// HAY QUE MODIFICARLO
 const mongoose = require('mongoose');
 
 const User = require('../../models/User.js');

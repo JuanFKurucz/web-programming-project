@@ -19,7 +19,7 @@ const loginForm = () => {
   };
 
   return html`
-    <div class="container">
+    <div class="container" ;>
       <section class="login">
         <h1>Ingresar</h1>
         <form @submit=${submitHandler}>

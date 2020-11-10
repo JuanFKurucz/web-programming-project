@@ -13,11 +13,16 @@ const raffleSchema = new mongoose.Schema({
 
 raffleSchema.virtual('toFrontend').get(function () {
   return {
+    id: this.id,
     title: this.title,
     description: this.description,
     postId: this.postId,
     winner: this.winner,
   };
+});
+
+raffleSchema.pre('remove', async function () {
+  this.model('User').update();
 });
 
 const Raffle = mongoose.model('Raffle', raffleSchema);

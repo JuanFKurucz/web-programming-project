@@ -62,6 +62,23 @@ const getInstagramPosts = async (instagramId) => {
   });
 };
 
+const getInstagramPost = async (instagramId) => {
+  return new Promise((resolve, reject) => {
+    FB.api(
+      `/${instagramId}`,
+      'GET',
+      { fields: 'comments_count,timestamp,media_type,media_url' },
+      (response) => {
+        if (!response || 'error' in response) {
+          reject(response.error);
+        } else {
+          resolve(response);
+        }
+      },
+    );
+  });
+};
+
 const getInstagramPostComments = async (instagramPostId) => {
   return new Promise((resolve, reject) => {
     FB.api(`/${instagramPostId}/comments`, 'GET', {}, (response) => {
@@ -77,6 +94,7 @@ const getInstagramPostComments = async (instagramPostId) => {
 module.exports = {
   getInstagramPostComments,
   getInstagramPosts,
+  getInstagramPost,
   getInstagramId,
   getFacebookPages,
   setAccessToken,

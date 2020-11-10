@@ -1,3 +1,5 @@
+require('../utils/config').start();
+
 const { mongodb } = require('../connectors');
 const { formatError } = require('../utils/formatOutput');
 

@@ -3,6 +3,12 @@
 }
 body {
   margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  color: #e0dee3;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 .container {
@@ -33,8 +39,8 @@ body {
 
 .loginButton {
   width: 100%;
-  color: skyblue;
-  border-color: skyblue;
+  color: #c8c3cc;
+  border-color: #c8c3cc;
   border-radius: 1vw;
   background-color: transparent;
   border-style: solid;

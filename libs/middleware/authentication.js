@@ -5,6 +5,8 @@ const jwt = require('jsonwebtoken');
 const User = require('../models/User');
 const { formatError } = require('../utils/formatOutput');
 
+const facebookApi = require('../clients/facebook');
+
 const jwtSecret = process.env.JWT_SECRET;
 
 const verifyToken = (token) => {
@@ -51,8 +53,16 @@ const authentication = (config) => (handler) => async (event, context) => {
 
   const { sub: userId } = decoded;
   try {
-    const user = await User.findById(userId);
-    return handler(event, context, user);
+    const user = await User.findById(userId).populate('raffles');
+    let fbAuth;
+    if (user.accessToken) {
+      try {
+        fbAuth = await facebookApi.setAccessToken(user.accessToken);
+      } catch (e) {
+        fbAuth = null;
+      }
+    }
+    return handler(event, context, user, fbAuth);
   } catch (e) {
     if (config[event.httpMethod].options.loginRequired) {
       return formatError(401, 'Invalid token.');

@@ -7,7 +7,13 @@ const userSchema = new mongoose.Schema({
   username: { type: String, required: true, unique: true, trim: true },
   password: { type: String, required: true },
   email: { type: String, required: true },
-  accessToken: { type: String, required: false },
+  accessToken: { type: String, required: false, default: null },
+  raffles: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Raffle',
+    },
+  ],
 });
 
 userSchema.virtual('toFrontend').get(function () {

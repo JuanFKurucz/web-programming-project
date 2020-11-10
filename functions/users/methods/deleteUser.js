@@ -9,9 +9,8 @@ const deleteUser = async (event, user) => {
       user.remove();
       return formatOutput(200, {});
     } catch (e) {
-      console.log(e);
+      return formatError(500, 'Unexpected error');
     }
-    return formatError(500, 'Unexpected error');
   }
   return formatError(404, 'User not found');
 };

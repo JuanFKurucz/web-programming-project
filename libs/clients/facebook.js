@@ -81,13 +81,18 @@ const getInstagramPost = async (instagramId) => {
 
 const getInstagramPostComments = async (instagramPostId) => {
   return new Promise((resolve, reject) => {
-    FB.api(`/${instagramPostId}/comments`, 'GET', {}, (response) => {
-      if (!response || 'error' in response) {
-        reject(response.error);
-      } else {
-        resolve(response.data);
-      }
-    });
+    FB.api(
+      `/${instagramPostId}/comments`,
+      'GET',
+      { fields: 'username' },
+      (response) => {
+        if (!response || 'error' in response) {
+          reject(response.error);
+        } else {
+          resolve(response.data);
+        }
+      },
+    );
   });
 };
 

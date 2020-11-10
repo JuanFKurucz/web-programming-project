@@ -5,7 +5,7 @@ const {
 
 const Raffle = require('../../../libs/models/Raffle');
 
-const deleteUser = async (event, user) => {
+const deleteRaffle = async (event, user) => {
   if (user) {
     try {
       const data = JSON.parse(event.body);
@@ -20,4 +20,4 @@ const deleteUser = async (event, user) => {
   return formatError(404, 'User not found');
 };
 
-module.exports = deleteUser;
+module.exports = deleteRaffle;

@@ -4,7 +4,7 @@ const raffleSchema = new mongoose.Schema({
   postId: { type: String, required: true, unique: true, trim: true },
   title: { type: String, required: true, trim: true },
   description: { type: String, trim: true },
-  winner: { type: String, trim: true },
+  winner: { type: String, trim: true, default: null },
   owner: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',

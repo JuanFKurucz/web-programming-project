@@ -7,14 +7,15 @@ const setAccessToken = (token) => {
 const getFacebookPages = async () => {
   return new Promise((resolve, reject) => {
     FB.api('/me/accounts', 'GET', {}, (response) => {
-      if (!response || response.error) {
+      if (!response || 'error' in response) {
         reject(response.error);
+      } else {
+        const pages = [];
+        Object.keys(response.data).forEach((key) => {
+          pages.push(response.data[key].id);
+        });
+        resolve(pages);
       }
-      const pages = [];
-      Object.keys(response.data).forEach((key) => {
-        pages.push(response.data[key].id);
-      });
-      resolve(pages);
     });
   });
 };
@@ -26,14 +27,15 @@ const getInstagramId = async (facebookPageId) => {
       'GET',
       { fields: 'instagram_business_account' },
       (response) => {
-        if (!response || response.error) {
+        if (!response || 'error' in response) {
           reject(response.error);
+        } else {
+          resolve(
+            response.instagram_business_account
+              ? response.instagram_business_account.id
+              : null,
+          );
         }
-        resolve(
-          response.instagram_business_account
-            ? response.instagram_business_account.id
-            : null,
-        );
       },
     );
   });
@@ -42,14 +44,15 @@ const getInstagramId = async (facebookPageId) => {
 const getInstagramPosts = async (instagramId) => {
   return new Promise((resolve, reject) => {
     FB.api(`/${instagramId}/media`, 'GET', {}, (response) => {
-      if (!response || response.error) {
+      if (!response || 'error' in response) {
         reject(response.error);
+      } else {
+        const posts = [];
+        Object.keys(response.data).forEach((key) => {
+          posts.push(response.data[key].id);
+        });
+        resolve(posts);
       }
-      const posts = [];
-      Object.keys(response.data).forEach((key) => {
-        posts.push(response.data[key].id);
-      });
-      resolve(posts);
     });
   });
 };
@@ -57,10 +60,11 @@ const getInstagramPosts = async (instagramId) => {
 const getInstagramPostComments = async (instagramPostId) => {
   return new Promise((resolve, reject) => {
     FB.api(`/${instagramPostId}/comments`, 'GET', {}, (response) => {
-      if (!response || response.error) {
+      if (!response || 'error' in response) {
         reject(response.error);
+      } else {
+        resolve(response.data);
       }
-      resolve(response.data);
     });
   });
 };

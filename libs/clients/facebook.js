@@ -43,17 +43,22 @@ const getInstagramId = async (facebookPageId) => {
 
 const getInstagramPosts = async (instagramId) => {
   return new Promise((resolve, reject) => {
-    FB.api(`/${instagramId}/media`, 'GET', {}, (response) => {
-      if (!response || 'error' in response) {
-        reject(response.error);
-      } else {
-        const posts = [];
-        Object.keys(response.data).forEach((key) => {
-          posts.push(response.data[key].id);
-        });
-        resolve(posts);
-      }
-    });
+    FB.api(
+      `/${instagramId}/media`,
+      'GET',
+      { fields: 'comments_count,timestamp,media_type,media_url' },
+      (response) => {
+        if (!response || 'error' in response) {
+          reject(response.error);
+        } else {
+          const posts = [];
+          Object.keys(response.data).forEach((key) => {
+            posts.push(response.data[key]);
+          });
+          resolve(posts);
+        }
+      },
+    );
   });
 };
 

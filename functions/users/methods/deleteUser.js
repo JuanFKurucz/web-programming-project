@@ -6,7 +6,7 @@ const {
 const deleteUser = async (event, user) => {
   if (user) {
     try {
-      user.remove();
+      await user.remove();
       return formatOutput(200, {});
     } catch (e) {
       return formatError(500, 'Unexpected error');

@@ -14,7 +14,9 @@ const raffleSchema = new mongoose.Schema({
 raffleSchema.virtual('toFrontend').get(function () {
   return {
     title: this.title,
+    description: this.description,
     postId: this.postId,
+    winner: this.winner,
   };
 });
 

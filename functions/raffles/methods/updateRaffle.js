@@ -31,8 +31,12 @@ const updateRaffle = async (event) => {
         updateDict.winner =
           userNames[Math.floor(Math.random() * userNames.length)];
       }
-      await raffle.update(updateDict);
-      return formatOutput(200, raffle.toFrontend);
+      const updatedRaffle = await Raffle.findByIdAndUpdate(
+        data.id,
+        updateDict,
+        { new: true },
+      );
+      return formatOutput(200, updatedRaffle.toFrontend);
     }
     return formatError(400, 'Missing parameter (id)');
   } catch (e) {

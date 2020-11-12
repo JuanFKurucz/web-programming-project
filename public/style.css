@@ -14,7 +14,7 @@ body {
 .container {
   display: flex;
   justify-content: center;
-  background-image: url('scripts/utils/background11.jpg');
+  background-image: url('assets/img/background.jpg');
 }
 
 .login {

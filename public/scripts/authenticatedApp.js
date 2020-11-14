@@ -2,7 +2,9 @@ import { html } from 'https://unpkg.com/lit-html?module';
 
 import { logOut } from './services/auth.js';
 import rafflesForm from './templates/rafflesForm.js';
+
 import header from './templates/header.js';
+
 import router from './templates/router.js';
 
 const routes = {
@@ -11,6 +13,7 @@ const routes = {
 
 const authenticatedApp = () => html`
   ${header()} ${rafflesForm()} ${router(routes)}
+
   <button @click=${logOut} type="button">Log Out</button>
 `;
 

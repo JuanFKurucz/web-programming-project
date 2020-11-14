@@ -10,7 +10,8 @@ const navigate = async (path) => {
 
 document.addEventListener(`click`, (e) => {
   const origin = e.target.closest('a');
-  if (window.location.hostname === origin.hostname) {
+
+  if (origin && window.location.hostname === origin.hostname) {
     e.preventDefault();
     navigate(origin.pathname);
   }

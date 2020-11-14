@@ -32,7 +32,6 @@ const registerForm = () => {
               placeholder="Ingresar su nombre de usuario"
             />
           </div>
-          <<<<<<< HEAD =======
           <div class="form-group username">
             <label for="username">Email</label><br />
             <input
@@ -42,7 +41,6 @@ const registerForm = () => {
               placeholder="Ingresar su correo electronico"
             />
           </div>
-          >>>>>>> fe-routing
           <div class="form-group password">
             <label for="password">Contraseña</label><br />
             <input

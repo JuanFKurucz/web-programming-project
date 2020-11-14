@@ -1,4 +1,17 @@
 import { html, nothing } from 'https://unpkg.com/lit-html?module';
+import { navigate } from '../utils/navigation.js';
+
+const submitHandlerRafflesByNames = (event) => {
+  event.preventDefault();
+
+  navigate('/rafflesByNames');
+};
+
+const submitHandlerInstagramRaffle = (event) => {
+  event.preventDefault();
+
+  navigate('/facebookForm');
+};
 
 const rafflesForm = () => {
   const error = null;
@@ -9,10 +22,12 @@ const rafflesForm = () => {
         <h1>Crear un nuevo sorteo</h1>
         
         <div class="form-group">
-            <button class="raffles-button"> Instagram </button>
+            <button type="button"
+            @click=${submitHandlerInstagramRaffle}cclass="raffles-button"> Instagram </button>
         </div>
         <div class="form-group">
-            <button class="raffles-button"> Listado por nombres </button>
+            <button type="button"
+            @click=${submitHandlerRafflesByNames} class="raffles-button"> Listado por nombres </button>
           </div>
 
           ${error ? html`<p>${error.message}</p>` : nothing}

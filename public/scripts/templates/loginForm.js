@@ -1,5 +1,5 @@
 import { html, nothing } from 'https://unpkg.com/lit-html?module';
-
+import { navigate } from '../utils/navigation.js';
 import { logIn } from '../services/auth.js';
 
 const loginForm = () => {
@@ -16,6 +16,12 @@ const loginForm = () => {
     } catch (err) {
       // TODO: Render error.
     }
+  };
+
+  const submitHandlerRegister = (event) => {
+    event.preventDefault();
+
+    navigate('/register');
   };
 
   return html`
@@ -42,8 +48,23 @@ const loginForm = () => {
               placeholder="Ingresar su contraseña"
             />
           </div>
-
-          <button class="loginButton">Ingresar</button>
+          <div class="form-group">
+            <div>
+              <button class="loginButton">Ingresar</button>
+            </div>
+            <div>
+              <p>
+                <a class="url" href="register">Olvide mi contraseña</a>
+              </p>
+            </div>
+            <button
+              type="button"
+              @click=${submitHandlerRegister}
+              class="registerButton"
+            >
+              Registrarse
+            </button>
+          </div>
           ${error ? html`<p>${error.message}</p>` : nothing}
         </form>
       </section>

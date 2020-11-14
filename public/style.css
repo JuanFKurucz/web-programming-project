@@ -47,6 +47,16 @@ body {
   height: 4vh;
 }
 
+.registerButton {
+  width: 50%;
+  color: #c8c3cc;
+  border-color: #c8c3cc;
+  border-radius: 1vw;
+  background-color: transparent;
+  border-style: solid;
+  height: 4vh;
+}
+
 .raffles-button {
   width: 50%;
   color: skyblue;
@@ -64,4 +74,10 @@ body {
   height: 100vh;
   padding: 20vh 0 0 0;
   font-size: 2.5vh;
+}
+
+.url {
+  width: 100%;
+  color: #c8c3cc;
+  height: 4vh;
 }

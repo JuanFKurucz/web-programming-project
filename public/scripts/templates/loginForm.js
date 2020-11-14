@@ -16,7 +16,7 @@ const loginForm = () => {
     try {
       await logIn(username, password);
     } catch (err) {
-      // TODO: Render error.
+      throw new Error('Oops! Something went wrong...');
     }
   };
 

@@ -1,6 +1,6 @@
 import { html, nothing } from 'https://unpkg.com/lit-html?module';
 
-// import { register } from '../services/auth.js';
+import { register } from '../services/auth.js';
 
 const registerForm = () => {
   const error = null;
@@ -8,13 +8,14 @@ const registerForm = () => {
   const submitHandler = async (event) => {
     event.preventDefault();
 
-    // const username = event.target.username.value;
-    // const password = event.target.password.value;
+    const username = event.target.username.value;
+    const password = event.target.password.value;
+    const email = event.target.email.value;
 
     try {
-      //      await register(username, password);
+      await register(username, email, password);
     } catch (err) {
-      // TODO: Render error.
+      throw new Error('Oops! Something went wrong...');
     }
   };
 

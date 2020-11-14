@@ -34,10 +34,10 @@ const registerForm = () => {
             />
           </div>
           <div class="form-group username">
-            <label for="username">Email</label><br />
+            <label for="email">Email</label><br />
             <input
               class="ourInput"
-              name="username"
+              name="email"
               type="text"
               placeholder="Ingresar su correo electronico"
             />

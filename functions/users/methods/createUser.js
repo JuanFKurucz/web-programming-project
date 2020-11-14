@@ -3,6 +3,8 @@ const {
   formatOutput,
 } = require('../../../libs/utils/formatOutput');
 
+const emailService = require('../../../libs/utils/emails.js');
+
 const User = require('../../../libs/models/User');
 
 const createUser = async (event, user = null) => {
@@ -19,6 +21,7 @@ const createUser = async (event, user = null) => {
     });
     try {
       await newUser.save();
+      emailService('luciamorenonegro@gmail.com');
       return formatOutput(200, newUser.toFrontend);
     } catch (error) {
       return formatError(500, 'Unexpected error');

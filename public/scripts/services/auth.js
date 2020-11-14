@@ -1,7 +1,6 @@
 import { post } from '../utils/api.js';
 import { navigate } from '../utils/navigation.js';
 import { removeSessionToken, setSessionToken } from '../utils/session.js';
-import { emailService } from "./emails.js";
 
 export const logIn = async (username, password) => {
   const { data: session, error } = await post('/sessions', {
@@ -29,9 +28,8 @@ export const logOut = () => {
 export const register = async (username, password, email) => {
   // TODO
   console.log('hola1');
-  emailService('luciamorenonegro@gmail.com');
-  console.log('hola2');
-  const { data: session, error } = await post('/sessions', {
+
+  const { data: session, error } = await post('/users', {
     username,
     password,
     email,

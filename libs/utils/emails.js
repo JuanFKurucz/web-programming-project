@@ -3,12 +3,12 @@ const nodemailer = require('nodemailer');
 const transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
-    user: 'correoprogramacionwebApp@gmail.com',
-    pass: 'correoprogramacionwebApp2020',
+    user: process.env.EMAIL_USERNAME,
+    pass: process.env.EMAIL_PASSWORD,
   },
 });
 
-export const emailService = async (to) => {
+const emailService = async (to) => {
   const mailOptions = {
     from: 'correoprogramacionwebApp@gmail.com',
     to,
@@ -20,9 +20,9 @@ export const emailService = async (to) => {
     if (error) {
       console.log(error);
     } else {
-      console.log(`Email sent: ${  info.response}`);
+      console.log(`Email sent: ${info.response}`);
     }
   });
 };
 
-export default emailService;
+module.exports = emailService;

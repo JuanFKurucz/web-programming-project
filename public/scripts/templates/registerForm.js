@@ -32,7 +32,15 @@ const registerForm = () => {
               placeholder="Ingresar su nombre de usuario"
             />
           </div>
-
+          <div class="form-group username">
+            <label for="username">Email</label><br />
+            <input
+              class="ourInput"
+              name="username"
+              type="text"
+              placeholder="Ingresar su correo electronico"
+            />
+          </div>
           <div class="form-group password">
             <label for="password">Contraseña</label><br />
             <input

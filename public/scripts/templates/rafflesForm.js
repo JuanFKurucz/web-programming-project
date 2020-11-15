@@ -23,9 +23,8 @@ const rafflesForm = () => {
         <h1>Crear un nuevo sorteo</h1>
         
         <div class="form-group">
-
             <button type="button"
-            @click=${submitHandlerInstagramRaffle}cclass="raffles-button"> Instagram </button>
+            @click=${submitHandlerInstagramRaffle} class="raffles-button"> Instagram </button>
         </div>
         <div class="form-group">
             <button type="button"

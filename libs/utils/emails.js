@@ -8,12 +8,12 @@ const transporter = nodemailer.createTransport({
   },
 });
 
-const emailService = async (to) => {
+const emailService = async (to, text) => {
   const mailOptions = {
     from: 'correoprogramacionwebApp@gmail.com',
     to,
-    subject: 'Sending Email using Node.js',
-    text: 'That was easy!',
+    subject: 'Plataforma de votaciones',
+    text,
   };
 
   transporter.sendMail(mailOptions, function (error, info) {

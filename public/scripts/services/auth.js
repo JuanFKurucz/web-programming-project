@@ -26,9 +26,6 @@ export const logOut = () => {
 };
 
 export const register = async (username, password, email) => {
-  // TODO
-  console.log('hola1');
-
   const { data: session, error } = await post('/users', {
     username,
     password,
@@ -37,7 +34,7 @@ export const register = async (username, password, email) => {
 
   if (error) {
     if (error.status === 401) {
-      // TODO throw new Error('Invalid username/password combination.');
+      throw new Error('Invalid username/password combination.');
     }
 
     throw new Error('Oops! Something went wrong...');

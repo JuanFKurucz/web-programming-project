@@ -21,7 +21,10 @@ const createUser = async (event, user = null) => {
     });
     try {
       await newUser.save();
-      emailService('luciamorenonegro@gmail.com');
+      emailService(
+        newUser.email,
+        'Su usuario se ha registrado en la plataforma de sorteos kusilmo',
+      );
       return formatOutput(200, newUser.toFrontend);
     } catch (error) {
       return formatError(500, 'Unexpected error');

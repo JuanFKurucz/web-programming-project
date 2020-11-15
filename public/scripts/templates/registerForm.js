@@ -57,7 +57,7 @@ const registerForm = () => {
             <input
               class="ourInput"
               name="password_verification"
-              type="password_verification"
+              type="password"
               placeholder="Ingresar su contraseña nuevamente"
             />
           </div>

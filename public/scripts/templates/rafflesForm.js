@@ -5,7 +5,7 @@ import { navigate } from '../utils/navigation.js';
 const submitHandlerRafflesByNames = (event) => {
   event.preventDefault();
 
-  navigate('/rafflesByNames');
+  navigate('/rafflesByNamesForm');
 };
 
 const submitHandlerInstagramRaffle = (event) => {

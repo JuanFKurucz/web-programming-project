@@ -49,3 +49,10 @@ export const register = async (username, password, email) => {
 
   navigate('/');
 };
+
+export const winner = async (listNames) => {
+  console.log('hi');
+  listNames.split(' ');
+  console.log(listNames[Math.floor(Math.random() * listNames.length)]);
+  navigate('/');
+};

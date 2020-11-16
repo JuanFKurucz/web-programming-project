@@ -1,12 +1,22 @@
 import { html, nothing } from 'https://unpkg.com/lit-html?module';
+import { winner } from '../services/auth.js';
+import { navigate } from '../utils/navigation.js';
 
 const rafflesByNamesForm = () => {
   const error = null;
 
-  const submitHandler = async (event) => {
+  const submitHandler = (event) => {
     event.preventDefault();
-
-    // const listNames = event.target.names.value;
+    const participantslist = event.target.participants.value;
+    try {
+      winner(participantslist);
+    } catch (err) {
+      throw new Error('Oops! Something went wrong...');
+    }
+  };
+  const submitHandlerRafflesByNamesForm = (event) => {
+    event.preventDefault();
+    navigate('/resultForm');
   };
 
   return html`
@@ -25,16 +35,21 @@ const rafflesByNamesForm = () => {
           </div>
 
           <div class="form-group password">
-            <label for="names">Nombres </label><br />
+            <label for="participants">Nombres </label><br />
             <input
               class="ourInput"
-              name="names"
-              type="names"
+              name="participants"
+              type="text"
               placeholder="Ingresar los nombres de los participantes"
             />
           </div>
-
-          <button class="loginButton">Comenzar</button>
+          <button
+            type="button"
+            @click=${submitHandlerRafflesByNamesForm}
+            class="raffles-button"
+          >
+            Generar ganador
+          </button>
           ${error ? html`<p>${error.message}</p>` : nothing}
         </form>
       </section>

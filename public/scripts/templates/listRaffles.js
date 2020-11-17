@@ -7,6 +7,7 @@ import { obtainRaffles, deleteRaffle } from '../services/raffles.js';
 const raffleItems = (raffle) => {
   const handleDeleteClick = async () => {
     await deleteRaffle(raffle.id);
+    window.location.reload();
   };
 
   let img = null;
@@ -41,6 +42,7 @@ const listRaffles = () => {
   };
   return html` <div class="container">
     <section class="raffles">
+      <h1>Sorteos finalizados</h1>
       ${resolvePromise(fetchRaffles())}
     </section>
   </div>`;

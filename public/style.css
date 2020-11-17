@@ -100,7 +100,8 @@ body {
   flex-wrap: wrap;
 }
 .grid > div {
-  flex: 1 1 200px;
+  flex: 1 1 10px;
+  border: 1px dotted grey;
 }
 
 .instagramPic {

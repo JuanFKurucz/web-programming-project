@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken');
-const User = require('../libs/models/User');
+const { User } = require('../libs/models/index');
 const { mongodb } = require('../libs/connectors');
 
 const jwtSecret = process.env.JWT_SECRET;

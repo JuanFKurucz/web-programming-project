@@ -3,7 +3,7 @@ const {
   formatOutput,
 } = require('../../../libs/utils/formatOutput');
 
-const Raffle = require('../../../libs/models/Raffle');
+const { Raffle } = require('../../../libs/models/index');
 
 const deleteRaffle = async (event, user) => {
   if (user) {

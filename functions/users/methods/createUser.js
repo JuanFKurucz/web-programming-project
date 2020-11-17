@@ -5,7 +5,7 @@ const {
 
 const emailService = require('../../../libs/utils/emails.js');
 
-const User = require('../../../libs/models/User');
+const { User } = require('../../../libs/models/index');
 
 const createUser = async (event, user = null) => {
   if (user) {

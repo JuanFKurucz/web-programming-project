@@ -3,33 +3,18 @@ const {
   formatOutput,
 } = require('../../../libs/utils/formatOutput');
 
-const Raffle = require('../../../libs/models/Raffle');
-const facebookApi = require('../../../libs/clients/facebook');
+const { Raffle } = require('../../../libs/models/index');
 
 const updateRaffle = async (event) => {
   try {
     const data = JSON.parse(event.body);
     if ('id' in data) {
-      const raffle = await Raffle.findById(data.id);
       const updateDict = {};
       if ('title' in data) {
         updateDict.title = data.title;
       }
       if ('description' in data) {
         updateDict.description = data.description;
-      }
-      if ('end' in data && !raffle.winner) {
-        const comments = await facebookApi.getInstagramPostComments(
-          raffle.postId,
-        );
-        const userNames = [];
-        for (let c = 0; c < comments.length; c += 1) {
-          if (userNames.indexOf(comments[c].username) === -1) {
-            userNames.push(comments[c].username);
-          }
-        }
-        updateDict.winner =
-          userNames[Math.floor(Math.random() * userNames.length)];
       }
       const updatedRaffle = await Raffle.findByIdAndUpdate(
         data.id,

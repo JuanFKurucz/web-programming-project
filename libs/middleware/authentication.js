@@ -2,7 +2,7 @@ require('../utils/config').start();
 
 const jwt = require('jsonwebtoken');
 
-const User = require('../models/User');
+const { User } = require('../models/index');
 const { formatError } = require('../utils/formatOutput');
 
 const facebookApi = require('../clients/facebook');

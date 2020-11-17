@@ -1,8 +1,8 @@
 const mongoose = require('mongoose');
 
 const raffleSchema = new mongoose.Schema({
-  postId: { type: String, required: true, unique: true, trim: true },
-  title: { type: String, required: true, trim: true },
+  postId: { type: String, unique: true, trim: true },
+  title: { type: String, trim: true },
   description: { type: String, trim: true },
   winner: { type: String, trim: true, default: null },
   owner: {

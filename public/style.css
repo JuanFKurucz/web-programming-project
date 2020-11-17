@@ -54,6 +54,7 @@ body {
   border-radius: 1vw;
   background-color: transparent;
   border-style: solid;
+  cursor: pointer;
   height: 4vh;
 }
 
@@ -64,6 +65,7 @@ body {
   border-radius: 1vw;
   background-color: transparent;
   border-style: solid;
+  cursor: pointer;
   height: 4vh;
 }
 

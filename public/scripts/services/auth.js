@@ -18,9 +18,9 @@ export const logIn = async (username, password) => {
 
     throw new Error('Oops! Something went wrong...');
   }
-
-  setSessionToken(session.token);
-
+  if (session && session.token) {
+    setSessionToken(session.token);
+  }
   navigate('/');
 };
 

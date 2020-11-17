@@ -47,7 +47,11 @@ const facebookForm = () => {
     });
   };
   executeFacebookLogin();
-  return html``;
+  return html`<div class="container">
+    <section class="raffles">
+      Loading...
+    </section>
+  </div>`;
 };
 
 export default facebookForm;

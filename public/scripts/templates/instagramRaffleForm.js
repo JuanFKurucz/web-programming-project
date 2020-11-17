@@ -6,15 +6,14 @@ import { navigate } from '../utils/navigation.js';
 import getInstagramPosts from '../services/instagram.js';
 import { createRaffle } from '../services/raffles.js';
 
-let error = '';
 const raffleItems = (raffle) => {
   const handleCreateRaffle = async () => {
     try {
       await createRaffle({ postId: raffle.id });
-      navigate('/raffles');
     } catch (e) {
-      error = 'No se pudo crear el sorteo, este ya existe.';
+      alert('Sorteo ya creado');
     }
+    navigate('/raffles');
   };
   const date = new Date(raffle.timestamp);
   return html`<div>
@@ -29,7 +28,9 @@ const raffleItems = (raffle) => {
       Fecha de publiacion:
       ${date.getDay()}/${date.getMonth()}/${date.getFullYear()}
     </p>
-    <button @click=${handleCreateRaffle}>Ejecutar sorteo</button>
+    <button class="raffles-button" @click=${handleCreateRaffle}>
+      Ejecutar sorteo
+    </button>
   </div>`;
 };
 
@@ -47,7 +48,7 @@ const listRaffles = () => {
   };
   return html` <div class="container">
     <section class="raffles">
-      ${resolvePromise(fetchRaffles())} ${error}
+      ${resolvePromise(fetchRaffles())}
     </section>
   </div>`;
 };

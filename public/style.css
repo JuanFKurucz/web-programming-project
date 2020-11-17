@@ -76,6 +76,7 @@ body {
   border-style: solid;
   height: 10vh;
   font-size: 2vh;
+  cursor: pointer;
 }
 
 .raffles {

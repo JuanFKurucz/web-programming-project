@@ -1,30 +1,55 @@
-import { html, nothing } from 'https://unpkg.com/lit-html?module';
+import { html } from 'https://unpkg.com/lit-html?module';
 
-const instagramRaffleForm = () => {
-  const error = null;
+import resolvePromise from '../directives/resolvePromise.js';
+import { navigate } from '../utils/navigation.js';
 
-  return html`
-    <div class="container">
-      <section class="raffles">
-        <h1>Sorteo de instagram</h1>
-        
-        <label for="url">Ingresar url de instagram</label><br />
-            <input
-              class="ourInput"
-              name="url"
-              type="url"
-              placeholder="Ingresar url de instagram"
-            />
+import getInstagramPosts from '../services/instagram.js';
+import { createRaffle } from '../services/raffles.js';
 
-        <div class="form-group">
-            <button class="loginButton"> Comenzar </button>
-          </div>
-
-          ${error ? html`<p>${error.message}</p>` : nothing}
-        </form>
-      </section>
-    </div>
-  `;
+let error = '';
+const raffleItems = (raffle) => {
+  const handleCreateRaffle = async () => {
+    try {
+      await createRaffle({ postId: raffle.id });
+      navigate('/raffles');
+    } catch (e) {
+      error = 'No se pudo crear el sorteo, este ya existe.';
+    }
+  };
+  const date = new Date(raffle.timestamp);
+  return html`<div>
+    <img
+      class="instagramPic"
+      src=${raffle.media_url}
+      alt=${raffle.title}
+      title=${raffle.title}
+    />
+    <p>Comentarios: ${raffle.comments_count}</p>
+    <p>
+      Fecha de publiacion:
+      ${date.getDay()}/${date.getMonth()}/${date.getFullYear()}
+    </p>
+    <button @click=${handleCreateRaffle}>Ejecutar sorteo</button>
+  </div>`;
 };
 
-export default instagramRaffleForm;
+const listRaffles = () => {
+  const fetchRaffles = async () => {
+    const data = await getInstagramPosts();
+
+    if (data.length === 0) {
+      return html`<p>No tienes ningun sorteo</p>`;
+    }
+
+    return html`<div class="grid">
+      ${data.map(raffleItems)}
+    </div>`;
+  };
+  return html` <div class="container">
+    <section class="raffles">
+      ${resolvePromise(fetchRaffles())} ${error}
+    </section>
+  </div>`;
+};
+
+export default listRaffles;

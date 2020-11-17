@@ -1,6 +1,10 @@
 import { post } from '../utils/api.js';
 import { navigate } from '../utils/navigation.js';
-import { removeSessionToken, setSessionToken } from '../utils/session.js';
+import {
+  removeSessionToken,
+  setSessionToken,
+  removeInstagramPosts,
+} from '../utils/session.js';
 
 export const logIn = async (username, password) => {
   const { data: session, error } = await post('/sessions', {
@@ -22,6 +26,7 @@ export const logIn = async (username, password) => {
 
 export const logOut = () => {
   removeSessionToken();
+  removeInstagramPosts();
   navigate('/login');
 };
 

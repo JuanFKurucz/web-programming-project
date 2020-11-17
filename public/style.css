@@ -9,12 +9,14 @@ body {
   color: #e0dee3;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-image: url('assets/img/background.jpg');
+  background-repeat: repeat-x;
+  background-size: contain;
 }
 
 .container {
   display: flex;
   justify-content: center;
-  background-image: url('assets/img/background.jpg');
 }
 
 .header {
@@ -88,4 +90,16 @@ body {
   width: 100%;
   color: #c8c3cc;
   height: 4vh;
+}
+
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+}
+.grid > div {
+  flex: 1 1 200px;
+}
+
+.instagramPic {
+  width: 150px;
 }

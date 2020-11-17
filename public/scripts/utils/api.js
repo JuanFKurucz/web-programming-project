@@ -31,3 +31,7 @@ const fetch = async (url, method, data) => {
 export const get = (url) => fetch(url, 'GET');
 
 export const post = (url, data) => fetch(url, 'POST', data);
+
+export const patch = (url, data) => fetch(url, 'PATCH', data);
+
+export const remove = (url, data) => fetch(url, 'DELETE', data);

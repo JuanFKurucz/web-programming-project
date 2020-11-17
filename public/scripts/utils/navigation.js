@@ -17,5 +17,18 @@ document.addEventListener(`click`, (e) => {
   }
 });
 
+const parseQuery = (queryString) => {
+  const query = {};
+  const pairs = (queryString[0] === '?'
+    ? queryString.substr(1)
+    : queryString
+  ).split('&');
+  for (let i = 0; i < pairs.length; i += 1) {
+    const pair = pairs[i].split('=');
+    query[decodeURIComponent(pair[0])] = decodeURIComponent(pair[1] || '');
+  }
+  return query;
+};
+
 // eslint-disable-next-line import/prefer-default-export
-export { navigate };
+export { navigate, parseQuery };

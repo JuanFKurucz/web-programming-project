@@ -1,37 +1,53 @@
 import { html } from 'https://unpkg.com/lit-html?module';
+import { updateUser } from '../services/users.js';
+
+import { navigate } from '../utils/navigation.js';
+import { setInstagramPosts } from '../utils/session.js';
+import getPosts from '../services/instagram.js';
 
 const facebookForm = () => {
-  return html`<script>
-      window.fbAsyncInit = function () {
-        FB.init({
-          appId: '357885441930081',
-          autoLogAppEvents: true,
-          xfbml: true,
-          version: 'v8.0',
+  const executeFacebookLogin = () => {
+    // eslint-disable-next-line
+    FB.init({
+      appId: '357885441930081',
+      autoLogAppEvents: true,
+      xfbml: true,
+      version: 'v8.0',
+    });
+    // eslint-disable-next-line
+    FB.login((response) => {
+      if (response.authResponse) {
+        // eslint-disable-next-line
+        FB.api('/me', () => {
+          // eslint-disable-next-line
+          FB.getLoginStatus(async (response) => {
+            if (response && response.status === 'connected') {
+              try {
+                const result = updateUser({
+                  accessToken: response.authResponse.accessToken,
+                });
+                if (result) {
+                  const instagramPosts = await getPosts();
+                  setInstagramPosts(instagramPosts);
+                  navigate('/instagramRaffleForm');
+                }
+              } catch (e) {
+                setTimeout(() => {
+                  window.location.reload();
+                }, 1000);
+              }
+            }
+          });
         });
-
-        FB.login(function (response) {
-          if (response.authResponse) {
-            console.log('Welcome!  Fetching your information.... ');
-            FB.api('/me', function (response) {
-              console.log(response);
-              console.log('Good to see you, ' + response.name + '.');
-              FB.getLoginStatus(function (response) {
-                console.log(response);
-              });
-            });
-          } else {
-            console.log('User cancelled login or did not fully authorize.');
-          }
-        });
-      };
-    </script>
-    <script
-      async
-      defer
-      crossorigin="anonymous"
-      src="https://connect.facebook.net/en_US/sdk.js"
-    ></script> `;
+      } else {
+        setTimeout(() => {
+          window.location.reload();
+        }, 1000);
+      }
+    });
+  };
+  executeFacebookLogin();
+  return html``;
 };
 
 export default facebookForm;

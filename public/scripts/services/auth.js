@@ -18,9 +18,9 @@ export const logIn = async (username, password) => {
 
     throw new Error('Oops! Something went wrong...');
   }
-  if (session && session.token) {
-    setSessionToken(session.token);
-  }
+
+  setSessionToken(session.token);
+
   navigate('/');
 };
 
@@ -47,12 +47,5 @@ export const register = async (username, password, email) => {
 
   setSessionToken(session.token);
 
-  navigate('/');
-};
-
-export const winner = async (listNames) => {
-  console.log('hi');
-  listNames.split(' ');
-  console.log(listNames[Math.floor(Math.random() * listNames.length)]);
   navigate('/');
 };

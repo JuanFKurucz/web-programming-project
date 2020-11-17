@@ -13,11 +13,11 @@ import router from './templates/router.js';
 const routes = {
   '/': rafflesForm,
   '/rafflesForm': rafflesForm,
-  '/rafflesByNamesForm': rafflesByNames,
+  '/rafflesByNames': rafflesByNames,
   '/facebookForm': facebookForm,
   '/instagramRaffleForm': instagramRaffleForm,
-  '/raffles': listRaffles,
   '/resultForm': resultForm,
+  '/raffles': listRaffles,
 };
 
 const authenticatedApp = () => {

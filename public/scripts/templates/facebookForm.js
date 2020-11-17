@@ -15,15 +15,15 @@ const facebookForm = () => {
       version: 'v8.0',
     });
     // eslint-disable-next-line
-    FB.login(
-      (response) => {
-        if (response.authResponse) {
+    FB.login((response) => {
+      if (response.authResponse) {
+        // eslint-disable-next-line
+        FB.api('/me', () => {
           // eslint-disable-next-line
-          FB.api('/me', () => {
-            // eslint-disable-next-line
-            FB.getLoginStatus(async (response) => {
-              if (response && response.status === 'connected') {
-                const result = await updateUser({
+          FB.getLoginStatus(async (response) => {
+            if (response && response.status === 'connected') {
+              try {
+                const result = updateUser({
                   accessToken: response.authResponse.accessToken,
                 });
                 if (result) {
@@ -31,16 +31,20 @@ const facebookForm = () => {
                   setInstagramPosts(instagramPosts);
                   navigate('/instagramRaffleForm');
                 }
+              } catch (e) {
+                setTimeout(() => {
+                  window.location.reload();
+                }, 1000);
               }
-            });
+            }
           });
-        }
-      },
-      {
-        scope:
-          'email,user_likes,business_management,instagram_basic,instagram_manage_comments,instagram_manage_insights,pages_show_list',
-      },
-    );
+        });
+      } else {
+        setTimeout(() => {
+          window.location.reload();
+        }, 1000);
+      }
+    });
   };
   executeFacebookLogin();
   return html`<div class="container">

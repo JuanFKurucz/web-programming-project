@@ -46,7 +46,7 @@ const raffleItems = (raffle) => {
 
 const listRaffles = () => {
   const fetchRaffles = async () => {
-    const data = await getInstagramPosts();
+    const { data } = await getInstagramPosts();
 
     if (data.length === 0) {
       return html`<p>No tienes ningun sorteo</p>`;

@@ -21,7 +21,7 @@ const getUser = async (event, user) => {
       posts = [...posts, facebookApi.getInstagramPosts(instagramIds[i])];
     }
     posts = await Promise.all(posts);
-    return formatOutput(200, posts[0]);
+    return formatOutput(200, { data: posts[0] });
   } catch (e) {
     return formatError(500, 'Unexpected error');
   }

@@ -13,6 +13,9 @@ const createRaffle = async (event, user = null) => {
     if (data.postId) {
       const comments = await facebookApi.getInstagramPostComments(data.postId);
       const userNames = [];
+      if (comments.length === 0) {
+        return formatError(400, 'Post has no comments');
+      }
       for (let c = 0; c < comments.length; c += 1) {
         if (userNames.indexOf(comments[c].username) === -1) {
           userNames.push(comments[c].username);

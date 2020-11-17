@@ -16,6 +16,18 @@ const raffleItems = (raffle) => {
     navigate('/raffles');
   };
   const date = new Date(raffle.timestamp);
+
+  let buttonCreate = html`<button
+    class="raffles-button"
+    @click=${handleCreateRaffle}
+  >
+    Ejecutar sorteo
+  </button>`;
+
+  if (raffle.comments_count === 0) {
+    buttonCreate = html`Espera a tener mas comentarios`;
+  }
+
   return html`<div>
     <img
       class="instagramPic"
@@ -28,9 +40,7 @@ const raffleItems = (raffle) => {
       Fecha de publiacion:
       ${date.getDay()}/${date.getMonth()}/${date.getFullYear()}
     </p>
-    <button class="raffles-button" @click=${handleCreateRaffle}>
-      Ejecutar sorteo
-    </button>
+    ${buttonCreate}
   </div>`;
 };
 

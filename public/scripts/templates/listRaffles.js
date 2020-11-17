@@ -12,17 +12,17 @@ const raffleItems = (raffle) => {
 
   let img = null;
   if (raffle.data) {
-    img = raffle.data.media_url;
+    img = html`<img
+      class="instagramPic"
+      src=${raffle.data.media_url}
+      alt=${raffle.title}
+      title=${raffle.title}
+    />`;
   }
 
   return html`<div>
     <h2>${raffle.title}</h2>
-    <img
-      class="instagramPic"
-      src=${img}
-      alt=${raffle.title}
-      title=${raffle.title}
-    />
+    ${img}
     <p>${raffle.description}</p>
     <p>Ganador: ${raffle.winner}</p>
     <button @click=${handleDeleteClick}>Eliminar</button>

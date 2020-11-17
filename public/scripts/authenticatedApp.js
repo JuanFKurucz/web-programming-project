@@ -5,7 +5,6 @@ import rafflesByNames from './templates/rafflesByNamesForm.js';
 import instagramRaffleForm from './templates/instagramRaffleForm.js';
 import facebookForm from './templates/facebookForm.js';
 import listRaffles from './templates/listRaffles.js';
-import resultForm from './templates/resultForm.js';
 
 import header from './templates/header.js';
 import router from './templates/router.js';
@@ -13,10 +12,9 @@ import router from './templates/router.js';
 const routes = {
   '/': rafflesForm,
   '/rafflesForm': rafflesForm,
-  '/rafflesByNames': rafflesByNames,
+  '/rafflesByNamesForm': rafflesByNames,
   '/facebookForm': facebookForm,
   '/instagramRaffleForm': instagramRaffleForm,
-  '/resultForm': resultForm,
   '/raffles': listRaffles,
 };
 

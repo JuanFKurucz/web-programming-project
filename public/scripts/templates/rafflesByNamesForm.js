@@ -1,28 +1,23 @@
 import { html, nothing } from 'https://unpkg.com/lit-html?module';
 import { navigate } from '../utils/navigation.js';
-import { post, patch } from '../utils/api.js';
+import { post } from '../utils/api.js';
 
 const rafflesByNamesForm = () => {
   const error = null;
 
-  const submitHandler = (event) => {
+  const submitHandler = async (event) => {
     event.preventDefault();
     const title = event.target.title.value;
     const participantslist = event.target.participants.value;
-    const end = true;
     try {
-      post('/raffles', {
+      await post('/raffles', {
         title,
+        listNames: participantslist,
       });
-      const result = patch('/raffles', {
-        end,
-        participantslist,
-      });
-      console.log(result);
     } catch (err) {
       throw new Error('Oops! Something went wrong...');
     }
-    navigate('/resultForm');
+    navigate('/raffles');
   };
 
   return html`

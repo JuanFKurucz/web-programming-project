@@ -13,9 +13,16 @@ const submitHandlerLogOut = async (event) => {
 const header = () => {
   return html`
     <header>
-      <button type="button" @click=${submitHandlerLogOut}>
-        Salir
-      </button>
+      <div class="navbar">
+        <ul>
+          <li><a>KuSilMo</a></li>
+          <li><a href="/rafflesForm">Crear sorteo</a></li>
+          <li><a href="/raffles">Sorteos finalizados</a></li>
+          <li style="float:right">
+            <a href="#" @click=${submitHandlerLogOut}>Salir</a>
+          </li>
+        </ul>
+      </div>
     </header>
   `;
 };

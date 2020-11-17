@@ -29,8 +29,7 @@ const rafflesForm = () => {
         <div class="form-group">
             <button type="button"
             @click=${submitHandlerRafflesByNames} class="raffles-button"> Listado por nombres </button>
-          </div>
-
+        </div>
           ${error ? html`<p>${error.message}</p>` : nothing}
         </form>
       </section>

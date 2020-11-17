@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const raffleSchema = new mongoose.Schema({
-  postId: { type: String, unique: true, trim: true },
+  postId: { type: String, trim: true },
   title: { type: String, trim: true },
   description: { type: String, trim: true },
   winner: { type: String, trim: true, default: null },
@@ -10,6 +10,8 @@ const raffleSchema = new mongoose.Schema({
     ref: 'User',
   },
 });
+
+raffleSchema.index({ postId: 1, owner: 1 }, { unique: true });
 
 raffleSchema.virtual('toFrontend').get(function () {
   return {

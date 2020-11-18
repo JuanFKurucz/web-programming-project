@@ -22,7 +22,7 @@ const createRaffle = async (event, user = null) => {
     }
     winner = userNames[Math.floor(Math.random() * userNames.length)];
   } else if (data.listNames) {
-    const arrayNames = data.listNames.split(' ');
+    const arrayNames = data.listNames.split(',');
     winner = arrayNames[Math.floor(Math.random() * arrayNames.length)];
   }
   const newRaffle = new Raffle({

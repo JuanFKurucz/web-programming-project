@@ -31,7 +31,7 @@ export const logOut = () => {
 };
 
 export const register = async (username, email, password) => {
-  const { data: session, error } = await post('/users', {
+  const { data, error } = await post('/users', {
     username,
     email,
     password,
@@ -45,7 +45,7 @@ export const register = async (username, email, password) => {
     throw new Error('Oops! Something went wrong...');
   }
 
-  setSessionToken(session.token);
+  setSessionToken(data.token);
 
   navigate('/');
 };

@@ -32,7 +32,7 @@ const updateRaffle = async (event) => {
           updateDict.winner =
             userNames[Math.floor(Math.random() * userNames.length)];
         } else {
-          const arrayNames = data.listNames.split(' ');
+          const arrayNames = data.listNames.split(',');
           updateDict.winner =
             arrayNames[Math.floor(Math.random() * arrayNames.length)];
         }

@@ -4,8 +4,14 @@ const {
 } = require('../../../libs/utils/formatOutput');
 
 const emailService = require('../../../libs/utils/emails.js');
+const { createToken } = require('../../../libs/utils/token.js');
 
 const { User } = require('../../../libs/models/index');
+
+const validateEmail = (email) => {
+  const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  return re.test(String(email).toLowerCase());
+};
 
 const createUser = async (event, user = null) => {
   if (user) {
@@ -21,11 +27,14 @@ const createUser = async (event, user = null) => {
     });
     try {
       await newUser.save();
-      emailService(
-        newUser.email,
-        'Su usuario se ha registrado en la plataforma de sorteos kusilmo',
-      );
-      return formatOutput(200, newUser.toFrontend);
+      if (validateEmail(data.email)) {
+        emailService(
+          newUser.email,
+          'Su usuario se ha registrado en la plataforma de sorteos kusilmo',
+        );
+      }
+      const token = createToken(newUser.id);
+      return formatOutput(200, { user: newUser.toFrontend, token });
     } catch (error) {
       return formatError(500, 'Unexpected error');
     }

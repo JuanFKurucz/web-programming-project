@@ -33,7 +33,7 @@ const rafflesByNamesForm = () => {
           </div>
 
           <div class="form-group password">
-            <label for="participants">Nombres </label><br />
+            <label for="participants">Nombres (separados por coma)</label><br />
             <input
               class="ourInput"
               name="participants"

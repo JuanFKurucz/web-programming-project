@@ -6,7 +6,7 @@ import instagramRaffleForm from './templates/instagramRaffleForm.js';
 import facebookForm from './templates/facebookForm.js';
 import listRaffles from './templates/listRaffles.js';
 import winRaffle from './templates/winRaffle.js';
-import resetPassword from './templates/resetPassword.js';
+
 import header from './templates/header.js';
 import router from './templates/router.js';
 
@@ -17,7 +17,6 @@ const routes = {
   '/facebookForm': facebookForm,
   '/instagramRaffleForm': instagramRaffleForm,
   '/winRaffle': winRaffle,
-  '/resetPassword': resetPassword,
   '/raffles': listRaffles,
 };
 

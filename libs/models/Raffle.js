@@ -12,7 +12,10 @@ const raffleSchema = new mongoose.Schema({
   },
 });
 
-raffleSchema.index({ postId: 1, owner: 1 }, { unique: true });
+raffleSchema.index(
+  { postId: 1, owner: 1 },
+  { unique: true, partialFilterExpression: { postId: { $type: 'string' } } },
+);
 
 raffleSchema.virtual('toFrontend').get(function () {
   return {

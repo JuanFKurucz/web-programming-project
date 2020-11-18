@@ -11,15 +11,6 @@ export const createRaffle = async (requestData) => {
   }
   return data;
 };
-function max(element) {
-  let raffle = null;
-  const maxDate = null;
-  console.log(element);
-  if (element.date > maxDate) {
-    raffle = element;
-  }
-  return raffle;
-}
 
 export const obtainRaffles = async (requestData) => {
   const { data, error } = await get('/raffles', requestData);
@@ -44,7 +35,16 @@ export const obtainLastRaffle = async (requestData) => {
     throw new Error('Oops! Something went wrong...');
   }
 
-  return data.forEach(max);
+  let raffle = null;
+  let maxDate = 0;
+
+  data.forEach((element) => {
+    if (new Date(element.date).getTime() > maxDate) {
+      raffle = element;
+      maxDate = new Date(element.date).getTime();
+    }
+  });
+  return raffle;
 };
 
 export const deleteRaffle = async (id) => {

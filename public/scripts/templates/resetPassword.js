@@ -10,7 +10,7 @@ const resetPassword = () => {
   const submitHandlerResetPassword = (event) => {
     event.preventDefault();
 
-    navigate('/loginForm');
+    navigate('/login');
   };
   return html`
     <div class="container" ;>

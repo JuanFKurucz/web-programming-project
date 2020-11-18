@@ -1,6 +1,6 @@
 import { html, nothing } from 'https://unpkg.com/lit-html?module';
 
-import { navigate } from '../utils/navigation.js';
+import { navigate } from '../../utils/navigation.js';
 
 const submitHandlerRafflesByNames = (event) => {
   event.preventDefault();

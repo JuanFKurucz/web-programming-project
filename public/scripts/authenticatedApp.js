@@ -1,11 +1,11 @@
 import { html } from 'https://unpkg.com/lit-html?module';
 
-import rafflesForm from './templates/rafflesForm.js';
-import rafflesByNames from './templates/rafflesByNamesForm.js';
-import instagramRaffleForm from './templates/instagramRaffleForm.js';
-import facebookForm from './templates/facebookForm.js';
-import listRaffles from './templates/listRaffles.js';
-import winRaffle from './templates/winRaffle.js';
+import rafflesForm from './templates/raffles/rafflesForm.js';
+import rafflesByNames from './templates/raffles/rafflesByNamesForm.js';
+import instagramRaffleForm from './templates/raffles/instagramRaffleForm.js';
+import facebookForm from './templates/users/facebookForm.js';
+import listRaffles from './templates/raffles/listRaffles.js';
+import winRaffle from './templates/raffles/winRaffle.js';
 
 import header from './templates/header.js';
 import router from './templates/router.js';

@@ -1,9 +1,9 @@
 import { html } from 'https://unpkg.com/lit-html?module';
-import { updateUser } from '../services/users.js';
+import { updateUser } from '../../services/users.js';
 
-import { navigate } from '../utils/navigation.js';
-import { setInstagramPosts } from '../utils/session.js';
-import getPosts from '../services/instagram.js';
+import { navigate } from '../../utils/navigation.js';
+import { setInstagramPosts } from '../../utils/session.js';
+import getPosts from '../../services/instagram.js';
 
 const facebookForm = () => {
   const executeFacebookLogin = () => {

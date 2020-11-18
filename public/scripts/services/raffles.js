@@ -21,7 +21,6 @@ export const obtainRaffles = async (requestData) => {
     }
     throw new Error('Oops! Something went wrong...');
   }
-  console.log(data);
   return data;
 };
 

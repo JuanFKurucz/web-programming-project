@@ -1,8 +1,8 @@
 import { html } from 'https://unpkg.com/lit-html?module';
 
-import resolvePromise from '../directives/resolvePromise.js';
+import resolvePromise from '../../directives/resolvePromise.js';
 
-import { obtainRaffles, deleteRaffle } from '../services/raffles.js';
+import { obtainRaffles, deleteRaffle } from '../../services/raffles.js';
 
 const raffleItems = (raffle) => {
   const handleDeleteClick = async () => {

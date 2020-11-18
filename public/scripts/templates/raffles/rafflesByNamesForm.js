@@ -1,6 +1,6 @@
 import { html, nothing } from 'https://unpkg.com/lit-html?module';
-import { navigate } from '../utils/navigation.js';
-import { post } from '../utils/api.js';
+import { navigate } from '../../utils/navigation.js';
+import { post } from '../../utils/api.js';
 
 const rafflesByNamesForm = () => {
   const error = null;

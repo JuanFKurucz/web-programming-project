@@ -1,10 +1,8 @@
 import { html, nothing } from 'https://unpkg.com/lit-html?module';
 
-import { navigate } from '../utils/navigation.js';
+import { register } from '../../services/auth.js';
 
-import { logIn } from '../services/auth.js';
-
-const loginForm = () => {
+const registerForm = () => {
   const error = null;
 
   const submitHandler = async (event) => {
@@ -12,24 +10,19 @@ const loginForm = () => {
 
     const username = event.target.username.value;
     const password = event.target.password.value;
+    const email = event.target.email.value;
 
     try {
-      await logIn(username, password);
+      await register(username, email, password);
     } catch (err) {
       throw new Error('Oops! Something went wrong...');
     }
   };
 
-  const submitHandlerRegister = (event) => {
-    event.preventDefault();
-
-    navigate('/register');
-  };
-
   return html`
     <div class="container" ;>
       <section class="login">
-        <h1>Ingresar</h1>
+        <h1>Regístrate</h1>
         <form @submit=${submitHandler}>
           <div class="form-group username">
             <label for="username">Usuario</label><br />
@@ -37,10 +30,18 @@ const loginForm = () => {
               class="ourInput"
               name="username"
               type="text"
-              placeholder="Ingresar su usuario"
+              placeholder="Ingresar su nombre de usuario"
             />
           </div>
-
+          <div class="form-group username">
+            <label for="email">Email</label><br />
+            <input
+              class="ourInput"
+              name="email"
+              type="text"
+              placeholder="Ingresar su correo electronico"
+            />
+          </div>
           <div class="form-group password">
             <label for="password">Contraseña</label><br />
             <input
@@ -50,23 +51,18 @@ const loginForm = () => {
               placeholder="Ingresar su contraseña"
             />
           </div>
-          <div class="form-group">
-            <div>
-              <button class="loginButton">Ingresar</button>
-            </div>
-            <div>
-              <p>
-                <a class="url" href="resetPassword">Olvide mi contraseña</a>
-              </p>
-            </div>
-            <button
-              type="button"
-              @click=${submitHandlerRegister}
-              class="registerButton"
-            >
-              Registrarse
-            </button>
+
+          <div class="form-group password">
+            <label for="password">Repita su contraseña</label><br />
+            <input
+              class="ourInput"
+              name="password_verification"
+              type="password"
+              placeholder="Ingresar su contraseña nuevamente"
+            />
           </div>
+
+          <button class="registerButton">Continuar</button>
           ${error ? html`<p>${error.message}</p>` : nothing}
         </form>
       </section>
@@ -74,4 +70,4 @@ const loginForm = () => {
   `;
 };
 
-export default loginForm;
+export default registerForm;

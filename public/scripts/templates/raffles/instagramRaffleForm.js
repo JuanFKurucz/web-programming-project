@@ -1,10 +1,10 @@
 import { html } from 'https://unpkg.com/lit-html?module';
 
-import resolvePromise from '../directives/resolvePromise.js';
-import { navigate } from '../utils/navigation.js';
+import resolvePromise from '../../directives/resolvePromise.js';
+import { navigate } from '../../utils/navigation.js';
 
-import getInstagramPosts from '../services/instagram.js';
-import { createRaffle } from '../services/raffles.js';
+import getInstagramPosts from '../../services/instagram.js';
+import { createRaffle } from '../../services/raffles.js';
 
 const raffleItems = (raffle) => {
   const handleCreateRaffle = async () => {

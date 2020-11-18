@@ -22,7 +22,7 @@ const registerForm = () => {
   return html`
     <div class="container" ;>
       <section class="login">
-        <h1>Ingresar</h1>
+        <h1>Regístrate</h1>
         <form @submit=${submitHandler}>
           <div class="form-group username">
             <label for="username">Usuario</label><br />
@@ -62,7 +62,7 @@ const registerForm = () => {
             />
           </div>
 
-          <button class="registerButton">Registrarse</button>
+          <button class="registerButton">Continuar</button>
           ${error ? html`<p>${error.message}</p>` : nothing}
         </form>
       </section>

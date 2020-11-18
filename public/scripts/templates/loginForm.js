@@ -56,7 +56,7 @@ const loginForm = () => {
             </div>
             <div>
               <p>
-                <a class="url" href="register">Olvide mi contraseña</a>
+                <a class="url" href="resetPassword">Olvide mi contraseña</a>
               </p>
             </div>
             <button

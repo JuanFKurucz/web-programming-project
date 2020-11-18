@@ -61,8 +61,8 @@ describe('Raffle', () => {
       });
     });
 
-    test('fails if raffles postId is empty', async () => {
-      expect.assertions(1);
+    test('does not fails if raffles postId is empty', async () => {
+      expect.assertions(0);
 
       raffle.postId = undefined;
       try {

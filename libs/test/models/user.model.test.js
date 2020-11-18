@@ -7,9 +7,9 @@ describe('User', () => {
 
   beforeEach(() => {
     user = new User({
-      username: 'NombrePrueba ApellidoPrueba',
+      username: 'usuario',
       password: 'unaPasswordSinHashear',
-      email: 'mail@correo.com',
+      email: 'noemail',
       accessToken: '167727272728',
       raffles: [],
     });
@@ -21,14 +21,14 @@ describe('User', () => {
   });
 
   describe('fields', () => {
-    describe('email', () => {
+    describe('username', () => {
       test("doesn't allow duplicates", async () => {
         expect.assertions(2);
 
         const user2 = new User({
-          username: 'NombrePrueba ApellidoPrueba',
+          username: 'usuario',
           password: 'unaPasswordSinHashear',
-          email: 'mail@correo.com',
+          email: 'noemail',
           accessToken: '167727272728',
           raffles: [],
         });
@@ -61,14 +61,13 @@ describe('User', () => {
     });
 
     test('fails if users name is empty', async () => {
-      expect.assertions(0);
+      expect.assertions(1);
 
       user.username = undefined;
       try {
         await user.validate();
       } catch (err) {
         expect(err).toBeInstanceOf(mongoose.Error.ValidationError);
-        expect(err.errors.name).toBeDefined();
       }
     });
 
@@ -93,18 +92,6 @@ describe('User', () => {
       } catch (err) {
         expect(err).toBeInstanceOf(mongoose.Error.ValidationError);
         expect(err.errors.password).toBeDefined();
-      }
-    });
-
-    test('fails if token is empty', async () => {
-      expect.assertions(2);
-
-      user.accessToken = undefined;
-      try {
-        await user.validate();
-      } catch (err) {
-        expect(err).toBeInstanceOf(mongoose.Error.ValidationError);
-        expect(err.errors.image).toBeDefined();
       }
     });
   });

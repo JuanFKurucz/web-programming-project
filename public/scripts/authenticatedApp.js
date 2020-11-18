@@ -5,7 +5,7 @@ import rafflesByNames from './templates/rafflesByNamesForm.js';
 import instagramRaffleForm from './templates/instagramRaffleForm.js';
 import facebookForm from './templates/facebookForm.js';
 import listRaffles from './templates/listRaffles.js';
-
+import winRaffle from './templates/winRaffle.js';
 import header from './templates/header.js';
 import router from './templates/router.js';
 
@@ -15,6 +15,7 @@ const routes = {
   '/rafflesByNamesForm': rafflesByNames,
   '/facebookForm': facebookForm,
   '/instagramRaffleForm': instagramRaffleForm,
+  '/winRaffle': winRaffle,
   '/raffles': listRaffles,
 };
 

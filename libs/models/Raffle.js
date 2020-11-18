@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const raffleSchema = new mongoose.Schema({
   postId: { type: String, trim: true },
-  date: { type: Date, default: Date.now },
+  date: { type: Date, trim: true },
   title: { type: String, trim: true },
   description: { type: String, trim: true },
   winner: { type: String, trim: true, default: null },

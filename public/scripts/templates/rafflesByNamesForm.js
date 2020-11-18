@@ -11,13 +11,14 @@ const rafflesByNamesForm = () => {
     const participantslist = event.target.participants.value;
     try {
       await post('/raffles', {
+        date: Date.now(),
         title,
         listNames: participantslist,
       });
     } catch (err) {
       throw new Error('Oops! Something went wrong...');
     }
-    navigate('/raffles');
+    navigate('/winRaffle');
   };
 
   return html`

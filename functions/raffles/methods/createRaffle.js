@@ -27,6 +27,7 @@ const createRaffle = async (event, user = null) => {
   }
   const newRaffle = new Raffle({
     postId: data.postId,
+    date: data.date,
     title: data.title ? data.title : '',
     description: data.description ? data.description : '',
     owner: user,

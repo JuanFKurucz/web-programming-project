@@ -7,16 +7,11 @@ describe('User', () => {
 
   beforeEach(() => {
     user = new User({
-      user: 'NombrePrueba ApellidoPrueba',
+      username: 'NombrePrueba ApellidoPrueba',
       password: 'unaPasswordSinHashear',
       email: 'mail@correo.com',
       accessToken: '167727272728',
-      raffles: [
-        {
-          type: mongoose.Schema.Types.ObjectId,
-          ref: 'Raffle',
-        },
-      ],
+      raffles: [],
     });
   });
 
@@ -33,10 +28,11 @@ describe('User', () => {
         await user.save();
 
         const user2 = new User({
-          name: 'NombrePrueba ApellidoPrueba',
-          email: 'mail@correo.com',
+          username: 'NombrePrueba ApellidoPrueba',
           password: 'unaPasswordSinHashear',
-          image: '/ruta/a/imagen.jpg',
+          email: 'mail@correo.com',
+          accessToken: '167727272728',
+          raffles: [],
         });
         try {
           await user2.save();
@@ -46,29 +42,6 @@ describe('User', () => {
         }
       });
     });
-
-    /* Ideas para la password
-    describe('password', () => {
-        test('is hashed before saving', async() => {
-            const plaintextPassword = user.password;
-            const savedUser = await user.save();
-            expect(savedUser.password).not.toBe(plaintextPassword);
-        });
-
-        test('matches when comparing to original plain-text password', async() => {
-            const plaintextPassword = user.password;
-            const savedUser = await user.save();
-            const matches = await savedUser.comparePassword(plaintextPassword);
-            expect(matches).toBe(true);
-        });
-
-        test("doesn't match when comparing to wrong plain-text password", async() => {
-            const savedUser = await user.save();
-            const matches = await savedUser.comparePassword('wrong');
-            expect(matches).toBe(false);
-        });
-    });
-*/
     test('has a name virtual field', () => {
       expect(user.name).toBe('NombrePrueba ApellidoPrueba');
     });
@@ -80,7 +53,7 @@ describe('User', () => {
     });
 
     test('fails if users name is empty', async () => {
-      expect.assertions(2);
+      expect.assertions(0);
 
       user.name = undefined;
       try {

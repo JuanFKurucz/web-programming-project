@@ -54,11 +54,16 @@ body {
   color: #c8c3cc;
   border-color: #c8c3cc;
   border-radius: 1vw;
-  background-image: linear-gradient(#2e2640, #6f3d44);
+  background-color: transparent;
   border-style: solid;
   cursor: pointer;
   height: 4vh;
   font-size: 14px;
+}
+
+.loginButton:hover {
+  background-color: #2e2640;
+  color: white;
 }
 
 .registerButton {
@@ -73,6 +78,11 @@ body {
   font-size: 14px;
 }
 
+.registerButton:hover {
+  background-color: #2e2640;
+  color: white;
+}
+
 .raffles-button {
   width: 50%;
   color: #c8c3cc;
@@ -83,6 +93,11 @@ body {
   height: 10vh;
   font-size: 2vh;
   cursor: pointer;
+}
+
+.raffles-button:hover {
+  background-color: #2e2640;
+  color: white;
 }
 
 .raffles {

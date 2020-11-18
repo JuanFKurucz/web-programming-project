@@ -10,7 +10,13 @@ describe('User', () => {
       user: 'NombrePrueba ApellidoPrueba',
       password: 'unaPasswordSinHashear',
       email: 'mail@correo.com',
-      token: '167727272728',
+      accessToken: '167727272728',
+      raffles: [
+        {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: 'Raffle',
+        },
+      ],
     });
   });
 

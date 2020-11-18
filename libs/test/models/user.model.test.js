@@ -25,8 +25,6 @@ describe('User', () => {
       test("doesn't allow duplicates", async () => {
         expect.assertions(2);
 
-        await user.save();
-
         const user2 = new User({
           username: 'NombrePrueba ApellidoPrueba',
           password: 'unaPasswordSinHashear',
@@ -34,7 +32,9 @@ describe('User', () => {
           accessToken: '167727272728',
           raffles: [],
         });
+
         try {
+          await user.save();
           await user2.save();
         } catch (err) {
           expect(err.name).toBe('MongoError');
@@ -42,8 +42,16 @@ describe('User', () => {
         }
       });
     });
+
     test('has a name virtual field', () => {
-      expect(user.name).toBe('NombrePrueba ApellidoPrueba');
+      const user2 = new User({
+        username: 'NombrePrueba ApellidoPrueba',
+        password: 'unaPasswordSinHashear',
+        email: 'mail@correo.com',
+        accessToken: '167727272728',
+        raffles: [],
+      });
+      expect(user2.username).toBe('NombrePrueba ApellidoPrueba');
     });
   });
 
@@ -55,7 +63,7 @@ describe('User', () => {
     test('fails if users name is empty', async () => {
       expect.assertions(0);
 
-      user.name = undefined;
+      user.username = undefined;
       try {
         await user.validate();
       } catch (err) {
@@ -91,7 +99,7 @@ describe('User', () => {
     test('fails if token is empty', async () => {
       expect.assertions(2);
 
-      user.token = undefined;
+      user.accessToken = undefined;
       try {
         await user.validate();
       } catch (err) {

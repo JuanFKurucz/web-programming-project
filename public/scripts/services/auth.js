@@ -30,11 +30,11 @@ export const logOut = () => {
   navigate('/login');
 };
 
-export const register = async (username, password, email) => {
+export const register = async (username, email, password) => {
   const { data: session, error } = await post('/users', {
     username,
-    password,
     email,
+    password,
   });
 
   if (error) {

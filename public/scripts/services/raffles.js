@@ -1,7 +1,16 @@
 import { get, post, remove } from '../utils/api.js';
 
-export const createRaffle = async (requestData) => {
-  const { data, error } = await post('/raffles', requestData);
+export const createRaffle = async (
+  title = '',
+  postId = null,
+  listNames = null,
+) => {
+  const { data, error } = await post('/raffles', {
+    date: Date.now(),
+    title,
+    postId,
+    listNames,
+  });
 
   if (error) {
     if (error.status === 401) {

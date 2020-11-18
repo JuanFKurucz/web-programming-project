@@ -1,6 +1,7 @@
 import { html } from 'https://unpkg.com/lit-html?module';
 
 import resolvePromise from '../../directives/resolvePromise.js';
+import { parseDate } from '../../utils/date.js';
 
 import { obtainRaffles, deleteRaffle } from '../../services/raffles.js';
 
@@ -19,12 +20,15 @@ const raffleItems = (raffle) => {
       title=${raffle.title}
     />`;
   }
-
+  const date = new Date(raffle.date);
   return html`<div>
     <h2>${raffle.title}</h2>
     ${img}
     <p>${raffle.description}</p>
     <p>Ganador: ${raffle.winner}</p>
+    <p>
+      Fecha: ${parseDate(date, true)}
+    </p>
     <button @click=${handleDeleteClick}>Eliminar</button>
   </div>`;
 };

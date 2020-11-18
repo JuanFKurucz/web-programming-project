@@ -1,6 +1,6 @@
 import { html, nothing } from 'https://unpkg.com/lit-html?module';
 import { navigate } from '../../utils/navigation.js';
-import { post } from '../../utils/api.js';
+import { createRaffle } from '../../services/raffles.js';
 
 const rafflesByNamesForm = () => {
   const error = null;
@@ -10,11 +10,7 @@ const rafflesByNamesForm = () => {
     const title = event.target.title.value;
     const participantslist = event.target.participants.value;
     try {
-      await post('/raffles', {
-        date: Date.now(),
-        title,
-        listNames: participantslist,
-      });
+      await createRaffle(title, null, participantslist);
     } catch (err) {
       throw new Error('Oops! Something went wrong...');
     }

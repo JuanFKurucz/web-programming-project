@@ -9,7 +9,7 @@ const facebookApi = require('../../../libs/clients/facebook');
 const createRaffle = async (event, user = null) => {
   const data = JSON.parse(event.body);
   let winner = null;
-  if ('postId' in data) {
+  if (data.postId) {
     const comments = await facebookApi.getInstagramPostComments(data.postId);
     const userNames = [];
     if (comments.length === 0) {
@@ -21,7 +21,7 @@ const createRaffle = async (event, user = null) => {
       }
     }
     winner = userNames[Math.floor(Math.random() * userNames.length)];
-  } else if ('listNames' in data) {
+  } else if (data.listNames) {
     const arrayNames = data.listNames.split(' ');
     winner = arrayNames[Math.floor(Math.random() * arrayNames.length)];
   }

@@ -2,6 +2,7 @@ import { html } from 'https://unpkg.com/lit-html?module';
 
 import resolvePromise from '../../directives/resolvePromise.js';
 import { navigate } from '../../utils/navigation.js';
+import { parseDate } from '../../utils/date.js';
 
 import getInstagramPosts from '../../services/instagram.js';
 import { createRaffle } from '../../services/raffles.js';
@@ -9,16 +10,16 @@ import { createRaffle } from '../../services/raffles.js';
 const raffleItems = (raffle) => {
   const handleCreateRaffle = async () => {
     try {
-      await createRaffle({ postId: raffle.id });
+      await createRaffle('', raffle.id);
     } catch (e) {
       alert('Sorteo ya creado');
     }
-    navigate('/raffles');
+    navigate('/winRaffle');
   };
   const date = new Date(raffle.timestamp);
 
   let buttonCreate = html`<button
-    class="raffles-button"
+    class="raffles-button button-inside-container"
     @click=${handleCreateRaffle}
   >
     Ejecutar sorteo
@@ -37,8 +38,7 @@ const raffleItems = (raffle) => {
     />
     <p>Comentarios: ${raffle.comments_count}</p>
     <p>
-      Fecha de publiacion:
-      ${date.getDay()}/${date.getMonth()}/${date.getFullYear()}
+      Fecha de publiacion: ${parseDate(date, true)}
     </p>
     ${buttonCreate}
   </div>`;

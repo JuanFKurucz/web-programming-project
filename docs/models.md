@@ -31,7 +31,7 @@
 
 - postId: instagram post id
   - Type: String
-  - Additionally: trimmed
+  - Additionally: trimmed if present it is unique together with the user relation
 - date: date of raffle creation
   - Type: String
   - Additionally: trimmed

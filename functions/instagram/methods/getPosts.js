@@ -4,7 +4,11 @@ const {
 } = require('../../../libs/utils/formatOutput');
 const facebookApi = require('../../../libs/clients/facebook');
 
-const getUser = async (event, user) => {
+/**
+ * Returns a list of Instagram posts
+ * Login is required
+ */
+const getPosts = async (event, user) => {
   if (!user.accessToken || user.accessToken.length === 0) {
     return formatError(403, 'Forbidden, access token required');
   }
@@ -27,4 +31,4 @@ const getUser = async (event, user) => {
   }
 };
 
-module.exports = getUser;
+module.exports = getPosts;

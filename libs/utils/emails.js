@@ -8,6 +8,11 @@ const transporter = nodemailer.createTransport({
   },
 });
 
+/**
+ * Sends an email
+ * @param {string} to destination email
+ * @param {string} text content of the email
+ */
 const emailService = async (to, text) => {
   const mailOptions = {
     from: 'correoprogramacionwebApp@gmail.com',

@@ -1,12 +1,13 @@
 import { html } from 'https://unpkg.com/lit-html?module';
-import { updateUser } from '../../services/users.js';
+import { updateUser, getUser } from '../../services/users.js';
 
 import { navigate } from '../../utils/navigation.js';
 import { setInstagramPosts } from '../../utils/session.js';
 import getPosts from '../../services/instagram.js';
 
 const facebookForm = () => {
-  const executeFacebookLogin = () => {
+  const executeFacebookLogin = async () => {
+    const user = await getUser();
     // eslint-disable-next-line
     FB.init({
       appId: '357885441930081',
@@ -32,13 +33,19 @@ const facebookForm = () => {
                   navigate('/instagramRaffleForm');
                 }
               } catch (e) {
-                setTimeout(() => {
-                  window.location.reload();
-                }, 1000);
+                if (user.hasAccessToken) {
+                  navigate('/instagramRaffleForm');
+                } else {
+                  setTimeout(() => {
+                    window.location.reload();
+                  }, 1000);
+                }
               }
             }
           });
         });
+      } else if (user.hasAccessToken) {
+        navigate('/instagramRaffleForm');
       } else {
         setTimeout(() => {
           window.location.reload();

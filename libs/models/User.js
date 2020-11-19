@@ -20,6 +20,7 @@ userSchema.virtual('toFrontend').get(function () {
   return {
     username: this.username,
     email: this.email,
+    hasAccessToken: this.accessToken && this.accessToken.length,
   };
 });
 /**

@@ -3,6 +3,10 @@ const {
   formatOutput,
 } = require('../../../libs/utils/formatOutput');
 
+/**
+ * Deletes the current logged user
+ * Login is required
+ */
 const deleteUser = async (event, user) => {
   if (user) {
     try {

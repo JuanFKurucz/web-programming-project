@@ -13,6 +13,10 @@ const validateEmail = (email) => {
   return re.test(String(email).toLowerCase());
 };
 
+/**
+ * Creates an user and sends a welcome email if this one is valid.
+ * Login is NOT required
+ */
 const createUser = async (event, user = null) => {
   if (user) {
     return formatError(403, 'A logged user cannot sign up again');

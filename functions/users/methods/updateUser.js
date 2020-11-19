@@ -3,6 +3,10 @@ const {
   formatOutput,
 } = require('../../../libs/utils/formatOutput');
 
+/**
+ * Updates the information of the current logged user
+ * Login is required
+ */
 const updateUser = async (event, user) => {
   if (user) {
     try {

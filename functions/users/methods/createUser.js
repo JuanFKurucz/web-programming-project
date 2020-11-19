@@ -27,7 +27,7 @@ const createUser = async (event, user = null) => {
     });
     try {
       await newUser.save();
-      if (validateEmail(data.email)) {
+      if (validateEmail(newUser.email)) {
         emailService(
           newUser.email,
           'Su usuario se ha registrado en la plataforma de sorteos kusilmo',

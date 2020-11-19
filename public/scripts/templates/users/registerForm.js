@@ -17,12 +17,12 @@ const registerForm = () => {
 
     const username = event.target.username.value;
     const password = event.target.password.value;
-    const passwordRepeated = event.target.password_verification.value;
+    const passwordVerification = event.target.passwordVerification.value;
     const email = event.target.email.value;
 
     if (!validateEmail(email)) {
       setError('El email es incorrecto');
-    } else if (password !== passwordRepeated) {
+    } else if (password !== passwordVerification) {
       setError('Las contraseñas no coinciden');
     } else {
       try {
@@ -67,10 +67,10 @@ const registerForm = () => {
           </div>
 
           <div class="form-group password">
-            <label for="password">Repita su contraseña</label><br />
+            <label for="passwordVerification">Repita su contraseña</label><br />
             <input
               class="ourInput"
-              name="password_verification"
+              name="passwordVerification"
               type="password"
               placeholder="Ingresar su contraseña nuevamente"
             />

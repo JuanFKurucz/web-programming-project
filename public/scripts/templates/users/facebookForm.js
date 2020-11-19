@@ -49,7 +49,13 @@ const facebookForm = () => {
   executeFacebookLogin();
   return html`<div class="container">
     <section class="raffles">
-      Loading...
+      <button
+        type="button"
+        @click=${executeFacebookLogin}
+        class="raffles-button"
+      >
+        Iniciar sesion en Facebook
+      </button>
     </section>
   </div>`;
 };

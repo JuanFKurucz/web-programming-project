@@ -1,6 +1,7 @@
 import { html, nothing } from 'https://unpkg.com/lit-html?module';
 
 import { navigate } from '../../utils/navigation.js';
+import { setError } from '../../utils/session.js';
 
 import { logIn } from '../../services/auth.js';
 
@@ -16,7 +17,7 @@ const loginForm = () => {
     try {
       await logIn(username, password);
     } catch (err) {
-      throw new Error('Oops! Something went wrong...');
+      setError('Usuario o contraseña erronea');
     }
   };
 

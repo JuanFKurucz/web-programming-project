@@ -1,5 +1,9 @@
+import { navigate } from './navigation.js';
+
 const tokenStorageKey = 'token';
 const instagramPostsStorageKey = 'instagramPosts';
+const pastPageStorageKey = 'pastPage';
+const errorStorageKey = 'error';
 
 export const getSessionToken = () => {
   return window.localStorage.getItem(tokenStorageKey);
@@ -23,4 +27,21 @@ export const setInstagramPosts = (info) => {
 
 export const removeInstagramPosts = () => {
   window.localStorage.removeItem(instagramPostsStorageKey);
+};
+
+export const getError = () => {
+  return window.localStorage.getItem(errorStorageKey);
+};
+
+export const setError = (info) => {
+  window.localStorage.setItem(errorStorageKey, info);
+  navigate('/error');
+};
+
+export const getPastPage = () => {
+  return window.localStorage.getItem(pastPageStorageKey);
+};
+
+export const setPastPage = (info) => {
+  window.localStorage.setItem(pastPageStorageKey, info);
 };

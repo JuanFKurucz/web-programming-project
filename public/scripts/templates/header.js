@@ -1,12 +1,13 @@
 import { html } from 'https://unpkg.com/lit-html?module';
 import { logOut } from '../services/auth.js';
+import { setError } from '../utils/session.js';
 
 const submitHandlerLogOut = async (event) => {
   event.preventDefault();
   try {
     await logOut();
   } catch (err) {
-    throw new Error('Oops! Something went wrong...');
+    setError('Error al desconetarse');
   }
 };
 

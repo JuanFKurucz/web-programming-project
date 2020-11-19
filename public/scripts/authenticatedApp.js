@@ -6,6 +6,7 @@ import instagramRaffleForm from './templates/raffles/instagramRaffleForm.js';
 import facebookForm from './templates/users/facebookForm.js';
 import listRaffles from './templates/raffles/listRaffles.js';
 import winRaffle from './templates/raffles/winRaffle.js';
+import errorPage from './templates/error.js';
 
 import header from './templates/header.js';
 import router from './templates/router.js';
@@ -18,6 +19,7 @@ const routes = {
   '/instagramRaffleForm': instagramRaffleForm,
   '/winRaffle': winRaffle,
   '/raffles': listRaffles,
+  '/error': errorPage,
 };
 
 const authenticatedApp = () => {

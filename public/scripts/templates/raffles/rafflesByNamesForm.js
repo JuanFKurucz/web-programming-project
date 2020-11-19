@@ -1,5 +1,6 @@
 import { html, nothing } from 'https://unpkg.com/lit-html?module';
 import { navigate } from '../../utils/navigation.js';
+import { setError } from '../../utils/session.js';
 import { createRaffle } from '../../services/raffles.js';
 
 const rafflesByNamesForm = () => {
@@ -12,7 +13,7 @@ const rafflesByNamesForm = () => {
     try {
       await createRaffle(title, null, participantslist);
     } catch (err) {
-      throw new Error('Oops! Something went wrong...');
+      setError('Error al crear sorteo');
     }
     navigate('/winRaffle');
   };

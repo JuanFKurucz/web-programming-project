@@ -1,5 +1,7 @@
 import { html, nothing } from 'https://unpkg.com/lit-html?module';
 
+import { setError } from '../../utils/session.js';
+
 import { register } from '../../services/auth.js';
 
 const registerForm = () => {
@@ -15,7 +17,7 @@ const registerForm = () => {
     try {
       await register(username, email, password);
     } catch (err) {
-      throw new Error('Oops! Something went wrong...');
+      setError('Usuario ya existente');
     }
   };
 

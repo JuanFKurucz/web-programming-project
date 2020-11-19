@@ -3,6 +3,7 @@ import { html } from 'https://unpkg.com/lit-html?module';
 import resolvePromise from '../../directives/resolvePromise.js';
 import { navigate } from '../../utils/navigation.js';
 import { parseDate } from '../../utils/date.js';
+import { setError } from '../../utils/session.js';
 
 import getInstagramPosts from '../../services/instagram.js';
 import { createRaffle } from '../../services/raffles.js';
@@ -11,10 +12,10 @@ const raffleItems = (raffle) => {
   const handleCreateRaffle = async () => {
     try {
       await createRaffle('', raffle.id);
+      navigate('/winRaffle');
     } catch (e) {
-      alert('Sorteo ya creado');
+      setError('Sorteo ya creado');
     }
-    navigate('/winRaffle');
   };
   const date = new Date(raffle.timestamp);
 

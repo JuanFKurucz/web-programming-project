@@ -1,9 +1,16 @@
 const { FB } = require('fb');
 
+/**
+ * Sets an access token to use the facebook user information for the following requests
+ * @param {string} token - Facebook access token
+ */
 const setAccessToken = (token) => {
   FB.setAccessToken(token);
 };
 
+/**
+ * Retrieves a list of facebook pages ids of the account references with the access token
+ */
 const getFacebookPages = async () => {
   return new Promise((resolve, reject) => {
     FB.api('/me/accounts', 'GET', {}, (response) => {
@@ -20,6 +27,10 @@ const getFacebookPages = async () => {
   });
 };
 
+/**
+ * Retrieves the id of an instagram account associated with a facebook page
+ * @param {string} facebookPageId - Facebook page id
+ */
 const getInstagramId = async (facebookPageId) => {
   return new Promise((resolve, reject) => {
     FB.api(
@@ -41,6 +52,10 @@ const getInstagramId = async (facebookPageId) => {
   });
 };
 
+/**
+ * Retrieves a list of instagram posts from an instagram account
+ * @param {string} instagramId - Instagram account id
+ */
 const getInstagramPosts = async (instagramId) => {
   return new Promise((resolve, reject) => {
     FB.api(
@@ -62,6 +77,10 @@ const getInstagramPosts = async (instagramId) => {
   });
 };
 
+/**
+ * Retrieves an instagram post by id
+ * @param {string} instagramId - Instagram post id
+ */
 const getInstagramPost = async (instagramId) => {
   return new Promise((resolve, reject) => {
     FB.api(
@@ -79,6 +98,10 @@ const getInstagramPost = async (instagramId) => {
   });
 };
 
+/**
+ * Retrieves a list of comments from an instagram post
+ * @param {string} instagramId - Instagram post id
+ */
 const getInstagramPostComments = async (instagramPostId) => {
   return new Promise((resolve, reject) => {
     FB.api(

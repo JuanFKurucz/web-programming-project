@@ -16,6 +16,7 @@
   - Type: String
   - Required: True
   - Unique: True
+  - Additionally: trimmed
 - accessToken: facebook accessToken
   - Type: String
   - Required: False

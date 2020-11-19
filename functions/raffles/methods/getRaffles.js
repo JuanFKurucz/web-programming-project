@@ -1,6 +1,10 @@
 const { formatOutput } = require('../../../libs/utils/formatOutput');
 const facebookApi = require('../../../libs/clients/facebook');
 
+/**
+ * Gets all raffles from an user
+ * Login is required
+ */
 const getRaffles = async (event, user) => {
   const raffles = await Promise.all(
     user.raffles.map(async (x) => {

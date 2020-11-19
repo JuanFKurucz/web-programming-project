@@ -6,6 +6,10 @@ const {
 const { Raffle } = require('../../../libs/models/index');
 const facebookApi = require('../../../libs/clients/facebook');
 
+/**
+ * Creates a Raffle and associates it with an user
+ * Login is required
+ */
 const createRaffle = async (event, user = null) => {
   const data = JSON.parse(event.body);
   let winner = null;

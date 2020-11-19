@@ -5,6 +5,10 @@ const {
 
 const { Raffle } = require('../../../libs/models/index');
 
+/**
+ * Deletes a raffle from an user
+ * Login is required
+ */
 const deleteRaffle = async (event, user) => {
   if (user) {
     try {

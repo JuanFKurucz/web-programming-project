@@ -17,7 +17,7 @@ const createRaffle = async (event, user = null) => {
     const comments = await facebookApi.getInstagramPostComments(data.postId);
     const userNames = [];
     if (comments.length === 0) {
-      return formatError(400, 'Post has no comments');
+      return formatError(400, 'Instagram post has no comments');
     }
     for (let c = 0; c < comments.length; c += 1) {
       if (userNames.indexOf(comments[c].username) === -1) {
@@ -26,8 +26,16 @@ const createRaffle = async (event, user = null) => {
     }
     winner = userNames[Math.floor(Math.random() * userNames.length)];
   } else if (data.listNames) {
+    if (data.listNames.length === 0) {
+      return formatError(400, 'Participant list is empty');
+    }
+    if (!data.title || data.title.length === 0) {
+      return formatError(400, 'Title is empty');
+    }
     const arrayNames = data.listNames.split(',');
     winner = arrayNames[Math.floor(Math.random() * arrayNames.length)];
+  } else {
+    return formatError(400, 'Raffle is empty');
   }
   const newRaffle = new Raffle({
     postId: data.postId,

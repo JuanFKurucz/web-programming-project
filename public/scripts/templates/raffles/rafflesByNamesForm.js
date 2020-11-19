@@ -12,10 +12,10 @@ const rafflesByNamesForm = () => {
     const participantslist = event.target.participants.value;
     try {
       await createRaffle(title, null, participantslist);
+      navigate('/winRaffle');
     } catch (err) {
       setError('Error al crear sorteo');
     }
-    navigate('/winRaffle');
   };
 
   return html`

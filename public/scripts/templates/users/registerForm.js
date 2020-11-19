@@ -64,7 +64,9 @@ const registerForm = () => {
             />
           </div>
 
-          <button class="registerButton">Continuar</button>
+          <button class="registerButton">
+            Continuar
+          </button>
           ${error ? html`<p>${error.message}</p>` : nothing}
         </form>
       </section>

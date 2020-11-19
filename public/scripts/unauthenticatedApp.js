@@ -5,6 +5,7 @@ import registerForm from './templates/users/registerForm.js';
 import resetPassword from './templates/users/resetPassword.js';
 import router from './templates/router.js';
 import errorPage from './templates/error.js';
+import headerUnlogged from './templates/headerUnlogged.js';
 
 const routes = {
   '/': loginForm,
@@ -14,6 +15,6 @@ const routes = {
   '/error': errorPage,
 };
 
-const unauthenticatedApp = () => html`${router(routes)}`;
+const unauthenticatedApp = () => html`${headerUnlogged()} ${router(routes)}`;
 
 export default unauthenticatedApp;

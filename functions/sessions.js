@@ -4,6 +4,10 @@ const { createToken } = require('../libs/utils/token.js');
 
 const mongodbUri = process.env.MONGODB_URI;
 
+/**
+ * Logs in the user, check if the username and password exists
+ * If it does returns a token to validate next requests
+ */
 exports.handler = async (event) => {
   await mongodb(mongodbUri);
 

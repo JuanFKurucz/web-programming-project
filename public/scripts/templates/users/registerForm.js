@@ -4,6 +4,11 @@ import { setError } from '../../utils/session.js';
 
 import { register } from '../../services/auth.js';
 
+const validateEmail = (email) => {
+  const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  return re.test(String(email).toLowerCase());
+};
+
 const registerForm = () => {
   const error = null;
 
@@ -12,12 +17,19 @@ const registerForm = () => {
 
     const username = event.target.username.value;
     const password = event.target.password.value;
+    const passwordRepeated = event.target.password_verification.value;
     const email = event.target.email.value;
 
-    try {
-      await register(username, email, password);
-    } catch (err) {
-      setError('Usuario ya existente');
+    if (!validateEmail(email)) {
+      setError('El email es incorrecto');
+    } else if (password !== passwordRepeated) {
+      setError('Las contraseñas no coinciden');
+    } else {
+      try {
+        await register(username, email, password);
+      } catch (err) {
+        setError('Usuario o email ya existente');
+      }
     }
   };
 

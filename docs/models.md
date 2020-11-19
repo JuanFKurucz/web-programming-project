@@ -15,6 +15,7 @@
 - email: email to be contacted
   - Type: String
   - Required: True
+  - Unique: True
 - accessToken: facebook accessToken
   - Type: String
   - Required: False

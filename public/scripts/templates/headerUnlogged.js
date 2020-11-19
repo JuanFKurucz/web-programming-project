@@ -6,7 +6,7 @@ const headerUnlogged = () => {
       <div class="navbar">
         <ul>
           <li><a>KuSilMo</a></li>
-          <li><a href="/login">Conectarse</a></li>
+          <li><a href="/login">Ingresar</a></li>
           <li><a href="/register">Registrarse</a></li>
         </ul>
       </div>
